@@ -6,9 +6,9 @@ import re
 from collections import defaultdict
 
 # Configure UTF-8 encoding for Windows terminals
-if sys.platform.startswith('win'):
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+if sys.platform.startswith("win"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 CHANGELOG_PATH = "CHANGELOG.md"
 
@@ -29,10 +29,12 @@ def run_cmd(args):
 
 def get_commit_log():
     # Fetch hashes and subject lines
-    success, stdout, _ = run_cmd(["git", "log", "--pretty=format:%h__DELIM__%s__DELIM__%an"])
+    success, stdout, _ = run_cmd(
+        ["git", "log", "--pretty=format:%h__DELIM__%s__DELIM__%an"]
+    )
     if not success or not stdout:
         return []
-    
+
     commits = []
     for line in stdout.splitlines():
         parts = line.strip().split("__DELIM__")
@@ -52,11 +54,11 @@ def parse_commits(commits):
         "perf": "⚡ Performance Improvements",
         "test": "🧪 Testing",
     }
-    
+
     grouped = defaultdict(list)
     # Match conventional commit patterns like "feat(scope): message" or "feat: message"
     pattern = re.compile(r"^(\w+)(?:\(([^)]+)\))?\s*:\s*(.*)$")
-    
+
     for c in commits:
         subj = c["subject"]
         match = pattern.match(subj)
@@ -69,14 +71,18 @@ def parse_commits(commits):
                 entry = f"- {scope_str}{msg} ({c['hash']}) - by @{c['author']}"
                 grouped[cat_name].append(entry)
             else:
-                grouped["Other Changes"].append(f"- {subj} ({c['hash']}) - by @{c['author']}")
+                grouped["Other Changes"].append(
+                    f"- {subj} ({c['hash']}) - by @{c['author']}"
+                )
         else:
             # If not following conventional commit style, place under other changes
             # Ignore automated update commits to prevent cluttering the log
             if "[skip ci]" in subj or "auto-update" in subj:
                 continue
-            grouped["Other Changes"].append(f"- {subj} ({c['hash']}) - by @{c['author']}")
-            
+            grouped["Other Changes"].append(
+                f"- {subj} ({c['hash']}) - by @{c['author']}"
+            )
+
     return grouped
 
 
@@ -86,14 +92,16 @@ def main():
     if not commits:
         print("No commits found.")
         sys.exit(0)
-        
+
     grouped = parse_commits(commits)
-    
+
     changelog_content = []
     changelog_content.append("# Changelog\n")
-    changelog_content.append("All notable changes to this repository will be documented in this file.\n")
+    changelog_content.append(
+        "All notable changes to this repository will be documented in this file.\n"
+    )
     changelog_content.append("<!-- START_CHANGES -->\n")
-    
+
     # Priority sorting for categories
     priority = [
         "🚀 Features",
@@ -103,21 +111,21 @@ def main():
         "📝 Documentation",
         "🧪 Testing",
         "🔧 Maintenance & Chores",
-        "Other Changes"
+        "Other Changes",
     ]
-    
+
     for cat in priority:
         if cat in grouped and grouped[cat]:
             changelog_content.append(f"## {cat}\n")
             for entry in grouped[cat]:
                 changelog_content.append(f"{entry}\n")
             changelog_content.append("")
-            
+
     changelog_content.append("<!-- END_CHANGES -->\n")
-    
+
     with open(CHANGELOG_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(changelog_content))
-        
+
     print(f"CHANGELOG.md generated successfully at {CHANGELOG_PATH}")
 
 
