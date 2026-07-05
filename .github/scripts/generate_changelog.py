@@ -61,6 +61,8 @@ def parse_commits(commits):
 
     for c in commits:
         subj = c["subject"]
+        # Clean forbidden brand terms from git logs automatically
+        subj = re.sub(r"Ground\s*Zero", "profile repository", subj, flags=re.IGNORECASE)
         match = pattern.match(subj)
         if match:
             c_type, scope, msg = match.groups()

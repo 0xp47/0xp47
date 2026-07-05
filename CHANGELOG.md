@@ -25,7 +25,7 @@ All notable changes to this repository will be documented in this file.
 
 ## 🐛 Bug Fixes
 
-- **branding**: change Ground Zero references to 0xp47 account, use user avatar, change schedules to daily 7 AM PHT (fb243ad) - by @0xp47
+- **branding**: change profile repository references to 0xp47 account, use user avatar, change schedules to daily 7 AM PHT (fb243ad) - by @0xp47
 
 - **farm-achievements**: configure explicit write permissions for contents and pull-requests in workflow, and add Windows shell/encoding support to script (75291fc) - by @0xp47
 
@@ -98,7 +98,7 @@ All notable changes to this repository will be documented in this file.
 
 - **readme**: auto-update dev metrics [skip ci] (800d419) - by @github-actions[bot]
 
-- remove all Ground Zero Community references, links, and descriptions from README, issue config, welcome bot, and scripts (4f951b3) - by @0xp47
+- remove all profile repository Community references, links, and descriptions from README, issue config, welcome bot, and scripts (4f951b3) - by @0xp47
 
 - **readme**: auto-update dev metrics [skip ci] (788f80d) - by @github-actions[bot]
 
