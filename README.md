@@ -156,7 +156,7 @@ Connect with a network of builders and creators dedicated to exploring technolog
 * **Facebook Page:** [Ground Zero Digital](https://www.facebook.com/GroundZeroDigital/)
 * **Facebook Group:** [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
 * **Facebook Group Chat:** [Messenger Invitation Link](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
-* **GitHub:** [GroundZero-Community](https://github.com/GroundZero-Community)
+* **GitHub:** [GroundZero-Community](https://github.com/GroundZeroCommunity)
 * **Discord:** [Join our Discord Server](https://discord.gg/4H2v6UwjmY)
 
 Everyone is welcome regardless of experience level. We invite you to learn new skills, contribute to ongoing projects, expand your network, and grow alongside a dedicated community of technology leaders.
