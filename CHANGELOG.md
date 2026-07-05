@@ -6,12 +6,22 @@ All notable changes to this repository will be documented in this file.
 
 ## 🔧 Maintenance & Chores
 
+- **readme**: auto-update dev metrics [skip ci] (921aa1f) - by @github-actions[bot]
+
+- **changelog**: auto-update CHANGELOG.md [skip ci] (cef29c6) - by @github-actions[bot]
+
+- **readme**: auto-update dev metrics [skip ci] (16c6753) - by @github-actions[bot]
+
 - **changelog**: auto-update CHANGELOG.md [skip ci] (57a5a30) - by @github-actions[bot]
 
 - **readme**: auto-update dev metrics [skip ci] (1eef1dc) - by @github-actions[bot]
 
 
 ## Other Changes
+
+- Merge pull request #9 from 0xp47/dependabot/pip/discord-py-gte-2.7.1 (502b7b2) - by @Jay Patrick Cano
+
+- Update discord-py requirement from >=2.3.2 to >=2.7.1 (2d78a45) - by @dependabot[bot]
 
 - Merge pull request #10 from 0xp47/dependabot/pip/pyyaml-gte-6.0.3 (f709a7f) - by @Jay Patrick Cano
 
