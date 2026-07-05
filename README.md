@@ -56,6 +56,7 @@ export default developer;
 ## 🛠️ Active Tech Stack
 
 <!-- TECH_STACK:START -->
+
 **Languages**
 
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" valign="middle" height="20">

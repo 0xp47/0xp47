@@ -5,42 +5,109 @@ import io
 import json
 import re
 
-if sys.platform.startswith('win'):
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+if sys.platform.startswith("win"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 README_PATH = "README.md"
 
 # Visual Badges Mapping
 TECH_BADGES = {
     # Languages
-    "python": ("Languages", "https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"),
-    "javascript": ("Languages", "https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"),
-    "typescript": ("Languages", "https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"),
-    "php": ("Languages", "https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white"),
-    "rust": ("Languages", "https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white"),
-    "go": ("Languages", "https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white"),
-    "bash": ("Languages", "https://img.shields.io/badge/Shell_Script-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white"),
-    
+    "python": (
+        "Languages",
+        "https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white",
+    ),
+    "javascript": (
+        "Languages",
+        "https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black",
+    ),
+    "typescript": (
+        "Languages",
+        "https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white",
+    ),
+    "php": (
+        "Languages",
+        "https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white",
+    ),
+    "rust": (
+        "Languages",
+        "https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white",
+    ),
+    "go": (
+        "Languages",
+        "https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white",
+    ),
+    "bash": (
+        "Languages",
+        "https://img.shields.io/badge/Shell_Script-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white",
+    ),
     # Frameworks / Libraries
-    "react": ("Frameworks & Libraries", "https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"),
-    "nextjs": ("Frameworks & Libraries", "https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"),
-    "vue": ("Frameworks & Libraries", "https://img.shields.io/badge/Vue.js-35495E?style=flat-square&logo=vuedotjs&logoColor=4FC08D"),
-    "laravel": ("Frameworks & Libraries", "https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white"),
-    "django": ("Frameworks & Libraries", "https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white"),
-    "flask": ("Frameworks & Libraries", "https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white"),
-    "fastapi": ("Frameworks & Libraries", "https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white"),
-    "express": ("Frameworks & Libraries", "https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"),
-    
+    "react": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB",
+    ),
+    "nextjs": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white",
+    ),
+    "vue": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/Vue.js-35495E?style=flat-square&logo=vuedotjs&logoColor=4FC08D",
+    ),
+    "laravel": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white",
+    ),
+    "django": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white",
+    ),
+    "flask": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white",
+    ),
+    "fastapi": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white",
+    ),
+    "express": (
+        "Frameworks & Libraries",
+        "https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white",
+    ),
     # Databases / DevOps / Tools
-    "mongodb": ("Databases & DevOps", "https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white"),
-    "mysql": ("Databases & DevOps", "https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"),
-    "postgresql": ("Databases & DevOps", "https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white"),
-    "redis": ("Databases & DevOps", "https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"),
-    "firebase": ("Databases & DevOps", "https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"),
-    "supabase": ("Databases & DevOps", "https://img.shields.io/badge/Supabase-1C1C1C?style=flat-square&logo=supabase&logoColor=3ECF8E"),
-    "docker": ("Databases & DevOps", "https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"),
-    "githubactions": ("Databases & DevOps", "https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white"),
+    "mongodb": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white",
+    ),
+    "mysql": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white",
+    ),
+    "postgresql": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white",
+    ),
+    "redis": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white",
+    ),
+    "firebase": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black",
+    ),
+    "supabase": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/Supabase-1C1C1C?style=flat-square&logo=supabase&logoColor=3ECF8E",
+    ),
+    "docker": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white",
+    ),
+    "githubactions": (
+        "Databases & DevOps",
+        "https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white",
+    ),
 }
 
 
@@ -56,7 +123,7 @@ def detect_technologies():
             for exc in [".git", "node_modules", "__pycache__", ".gemini", "dotfiles"]
         ):
             continue
-            
+
         for file in files:
             ext = os.path.splitext(file)[1].lower()
             if ext == ".py":
@@ -133,11 +200,7 @@ def detect_technologies():
 
 def build_markdown_badges(detected_techs):
     # Group detected tech by categories
-    groups = {
-        "Languages": [],
-        "Frameworks & Libraries": [],
-        "Databases & DevOps": []
-    }
+    groups = {"Languages": [], "Frameworks & Libraries": [], "Databases & DevOps": []}
 
     for tech in sorted(detected_techs):
         if tech in TECH_BADGES:
@@ -153,8 +216,10 @@ def build_markdown_badges(detected_techs):
                 name_display = "MongoDB"
             elif tech == "postgresql":
                 name_display = "PostgreSQL"
-                
-            groups[category].append(f'<img src="{badge_url}" alt="{name_display}" valign="middle" height="20">')
+
+            groups[category].append(
+                f'<img src="{badge_url}" alt="{name_display}" valign="middle" height="20">'
+            )
 
     # Construct the markdown string
     markdown_lines = []
@@ -177,10 +242,7 @@ def patch_readme(badges_md):
     start_tag = "<!-- TECH_STACK:START -->"
     end_tag = "<!-- TECH_STACK:END -->"
 
-    pattern = re.compile(
-        rf"{re.escape(start_tag)}.*?{re.escape(end_tag)}",
-        re.DOTALL
-    )
+    pattern = re.compile(rf"{re.escape(start_tag)}.*?{re.escape(end_tag)}", re.DOTALL)
 
     replacement = f"{start_tag}\n{badges_md}\n{end_tag}"
 
@@ -191,7 +253,9 @@ def patch_readme(badges_md):
         print("README.md successfully updated with tech stack badges!")
     else:
         print("Error: Tech stack comment tags not found in README.md.")
-        print("Make sure you add '<!-- TECH_STACK:START -->' and '<!-- TECH_STACK:END -->' to your README.md.")
+        print(
+            "Make sure you add '<!-- TECH_STACK:START -->' and '<!-- TECH_STACK:END -->' to your README.md."
+        )
         sys.exit(1)
 
 
@@ -199,7 +263,7 @@ def main():
     print("Scanning repository for active technologies...")
     detected = detect_technologies()
     print(f"Detected technologies: {', '.join(detected)}")
-    
+
     badges_md = build_markdown_badges(detected)
     patch_readme(badges_md)
 
