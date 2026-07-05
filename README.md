@@ -53,6 +53,18 @@ const developer = {
 export default developer;
 ```
 
+## 🛠️ Active Tech Stack
+
+<!-- TECH_STACK:START -->
+**Languages**
+
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" valign="middle" height="20">
+
+**Databases & DevOps**
+
+<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white" alt="GitHub Actions" valign="middle" height="20">
+<!-- TECH_STACK:END -->
+
 <!-- STATS:START -->
 
 ```text

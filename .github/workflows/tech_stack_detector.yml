@@ -1,0 +1,51 @@
+name: Update Tech Stack Badges
+
+on:
+  schedule:
+    - cron: '0 23 * * *'   # Daily at 7:00 AM PHT (23:00 UTC)
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - 'README.fil.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tech-stack-updater
+  cancel-in-progress: false
+
+jobs:
+  update-tech-stack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Tech Stack Detector
+        run: |
+          python .github/scripts/tech_stack_detector.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(readme): auto-update tech stack badges [skip ci]"
+            git pull --rebase -X theirs origin main
+            git push origin main
+          else
+            echo "No changes in tech stack badges."
+          fi
