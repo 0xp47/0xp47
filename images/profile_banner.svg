@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="160" viewBox="0 0 850 160" fill="none">
+    <style>
+        .bg {
+            fill: url(#gradient);
+            stroke: #30363d;
+            stroke-width: 1.5;
+            rx: 8px;
+        }
+        .title {
+            font: 700 24px 'Inter', -apple-system, sans-serif;
+            fill: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font: 500 13px 'Inter', -apple-system, sans-serif;
+            fill: #58a6ff;
+            letter-spacing: 0.5px;
+        }
+        .stat-label {
+            font: 500 11px 'Inter', -apple-system, sans-serif;
+            fill: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .stat-val {
+            font: 700 18px 'Inter', -apple-system, sans-serif;
+            fill: #ffffff;
+        }
+        .glow {
+            filter: drop-shadow(0px 0px 4px rgba(88, 166, 255, 0.4));
+        }
+    </style>
+    
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d1117" />
+            <stop offset="50%" stop-color="#161b22" />
+            <stop offset="100%" stop-color="#0c0e12" />
+        </linearGradient>
+    </defs>
+    
+    <!-- Background -->
+    <rect class="bg" width="848" height="158" x="1" y="1" />
+    
+    <!-- Left Logo/Text section -->
+    <g transform="translate(40, 55)">
+        <text class="title glow" x="0" y="20">0xp47</text>
+        <text class="subtitle" x="0" y="40">FULL-STACK DEVELOPER &amp; AUTOMATION BUILDER</text>
+    </g>
+    
+    <!-- Right stats block -->
+    <g transform="translate(460, 45)">
+        <!-- Stat 1: Repos -->
+        <g transform="translate(0, 0)">
+            <text class="stat-label" x="0" y="12">Repositories</text>
+            <text class="stat-val" x="0" y="34">9</text>
+        </g>
+        
+        <!-- Stat 2: Stars -->
+        <g transform="translate(100, 0)">
+            <text class="stat-label" x="0" y="12">Stars Received</text>
+            <text class="stat-val" x="0" y="34">⭐ 1</text>
+        </g>
+        
+        <!-- Stat 3: Followers -->
+        <g transform="translate(210, 0)">
+            <text class="stat-label" x="0" y="12">Followers</text>
+            <text class="stat-val" x="0" y="34">7</text>
+        </g>
+        
+        <!-- Stat 4: Coding Hours -->
+        <g transform="translate(295, 0)">
+            <text class="stat-label" x="0" y="12">Coding Time</text>
+            <text class="stat-val" x="0" y="34">⏱️ 875 hrs 18 mins</text>
+        </g>
+    </g>
+</svg>

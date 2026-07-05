@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="305" viewBox="0 0 850 305">
+  <style>
+    .bg { fill: #0d1117; rx: 12px; }
+    .title { font-family: 'Segoe UI', Ubuntu, sans-serif; font-size: 16px; fill: #58a6ff; font-weight: bold; }
+    .grid-line { stroke: #30363d; stroke-width: 1; stroke-dasharray: 4; }
+    .date-label { font-family: 'Segoe UI', Ubuntu, sans-serif; font-size: 10px; fill: #8b949e; text-anchor: middle; }
+    .task-label { font-family: 'Segoe UI', Ubuntu, sans-serif; font-size: 12px; fill: #c9d1d9; font-weight: 500; }
+    .bar-bg { rx: 4px; fill: #21262d; }
+    .bar-fill { rx: 4px; }
+    .progress-text { font-family: 'Segoe UI', Ubuntu, sans-serif; font-size: 10px; fill: #8b949e; font-weight: bold; }
+  </style>
+  
+  <!-- Background -->
+  <rect width="850" height="305" class="bg" />
+  
+  <text x="25" y="32" class="title">📍 Project Roadmap &amp; Progress</text>
+  <line x1="250.0" y1="50" x2="250.0" y2="280" class="grid-line" />
+  <text x="250.0" y="293" class="date-label">Jul 01</text>
+  <line x1="362.0" y1="50" x2="362.0" y2="280" class="grid-line" />
+  <text x="362.0" y="293" class="date-label">Jul 05</text>
+  <line x1="474.0" y1="50" x2="474.0" y2="280" class="grid-line" />
+  <text x="474.0" y="293" class="date-label">Jul 10</text>
+  <line x1="586.0" y1="50" x2="586.0" y2="280" class="grid-line" />
+  <text x="586.0" y="293" class="date-label">Jul 15</text>
+  <line x1="698.0" y1="50" x2="698.0" y2="280" class="grid-line" />
+  <text x="698.0" y="293" class="date-label">Jul 20</text>
+  <line x1="810.0" y1="50" x2="810.0" y2="280" class="grid-line" />
+  <text x="810.0" y="293" class="date-label">Jul 25</text>
+  <text x="25" y="73" class="task-label">Profile stats & weekly reports</text>
+  <rect x="250.0" y="61" width="163.33333333333334" height="16" class="bar-bg" />
+  <rect x="250.0" y="61" width="163.33333333333334" height="16" fill="#00f0ff" class="bar-fill" />
+  <text x="421.33333333333337" y="73" class="progress-text">100%</text>
+  <text x="25" y="118" class="task-label">Farming & Streak automation</text>
+  <rect x="320.0" y="106" width="140.0" height="16" class="bar-bg" />
+  <rect x="320.0" y="106" width="140.0" height="16" fill="#00ff66" class="bar-fill" />
+  <text x="468.0" y="118" class="progress-text">100%</text>
+  <text x="25" y="163" class="task-label">PR Linting & TODO creators</text>
+  <rect x="343.3333333333333" y="151" width="163.33333333333334" height="16" class="bar-bg" />
+  <rect x="343.3333333333333" y="151" width="163.33333333333334" height="16" fill="#ffaa00" class="bar-fill" />
+  <text x="514.6666666666666" y="163" class="progress-text">100%</text>
+  <text x="25" y="208" class="task-label">Security auditing & backups</text>
+  <rect x="343.3333333333333" y="196" width="233.33333333333334" height="16" class="bar-bg" />
+  <rect x="343.3333333333333" y="196" width="210.0" height="16" fill="#ff3366" class="bar-fill" />
+  <text x="584.6666666666666" y="208" class="progress-text">90%</text>
+  <text x="25" y="253" class="task-label">Discord Bot remote commands</text>
+  <rect x="460.0" y="241" width="350.0" height="16" class="bar-bg" />
+  <rect x="460.0" y="241" width="70.0" height="16" fill="#cc33ff" class="bar-fill" />
+  <text x="818.0" y="253" class="progress-text">20%</text>
+</svg>

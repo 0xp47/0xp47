@@ -1,0 +1,32 @@
+name: Broken Asset Checker
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'   # Run weekly on Sundays
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+      - 'images/**'
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  check-assets:
+    runs-on: ubuntu-latest
+    name: Audit Asset Health
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Asset Audit
+        run: python .github/scripts/broken_asset_tracker.py

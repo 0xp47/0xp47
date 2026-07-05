@@ -1,0 +1,28 @@
+name: Daily Contribution Generator
+
+on:
+  schedule:
+    - cron: '0 23 * * *'   # Daily at 7:00 AM PHT (23:00 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Generate 5 Commits
+        run: |
+          python .github/scripts/daily_commits.py

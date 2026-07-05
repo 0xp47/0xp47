@@ -1,0 +1,34 @@
+name: "💡 Feature Request"
+description: "Suggest a new idea or enhancement for this repository"
+title: "[FEAT]: "
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make this repository better? I would love to hear it!
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: "Feature Description"
+      description: "A clear and concise description of what you want to happen."
+      placeholder: "I suggest adding a workflow that..."
+    validations:
+      required: true
+  - type: textarea
+    id: problem-solved
+    attributes:
+      label: "Problem Solved"
+      description: "What problem does this solve, or what use case does this support?"
+      placeholder: "This would save developers time because..."
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional Context"
+      description: "Any other context, screenshots, or examples you'd like to share."
+      placeholder: "Here is an example layout..."
+    validations:
+      required: false

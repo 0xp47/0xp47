@@ -1,0 +1,79 @@
+name: Contributor Welcome Bot
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    name: Greet Contributor
+
+    steps:
+      - name: Greet New Issue Creator
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const creator = context.payload.issue.user.login;
+            
+            // Check if this is the user's first issue in this repo
+            const response = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              creator: creator,
+              state: 'all'
+            });
+            
+            // If the only issue is the current one, it's their first
+            if (response.data.length <= 1) {
+              const welcomeMessage = `👋 Hello @${creator}!
+              
+              Welcome to **@0xp47's repository**! Thank you for opening an issue. 
+              
+              Whether you are here to report a bug, request a feature, or ask a question, I'm glad to have you. I will review this shortly. 🚀`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: welcomeMessage
+              });
+            }
+
+      - name: Greet New PR Contributor
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const creator = context.payload.pull_request.user.login;
+            
+            // Check if this is the user's first PR
+            const response = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all'
+            });
+            
+            const userPrs = response.data.filter(pr => pr.user.login === creator);
+            
+            if (userPrs.length <= 1) {
+              const welcomeMessage = `🎉 Welcome @${creator} to **@0xp47's repository**!
+              
+              Thank you so much for your pull request! Contributing code or updates is the best way to grow together as developers. I really appreciate your effort.
+              
+              I will review your changes shortly. Happy coding! 💻✨`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: welcomeMessage
+              });
+            }

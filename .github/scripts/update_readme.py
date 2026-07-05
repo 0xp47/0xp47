@@ -1,0 +1,869 @@
+#!/usr/bin/env python3
+"""
+GitHub Profile README Stats Generator
+Fetches live data from the GitHub API and auto-updates the Stats block in README.md.
+
+Data sources:
+    - WakaTime      : languages, coding-time distribution, day-of-week, editors, operating systems
+    - GitHub API    : repo visibility count and stars
+"""
+
+import os
+import re
+import time
+from datetime import datetime, timezone, timedelta
+from collections import defaultdict
+
+try:
+    import requests
+except ImportError:
+    raise SystemExit("Missing dependency. Run: pip install requests")
+
+# ── Config ────────────────────────────────────────────────────────────────────
+GITHUB_USERNAME = "0xp47"
+README_PATH = "README.md"
+BAR_WIDTH = 10
+START_YEAR = 2020
+MARKER_START = "<!-- STATS:START -->"
+MARKER_END = "<!-- STATS:END -->"
+MAIN_COL_WIDTH = 74
+PET_LINE_WIDTH = 8
+
+PET_ARTS = [
+    ["/\\_/\\", "( o.o )", "> ^ <"],
+    ["(\\_/)", "(o.o)", "/|_|\\"],
+    ["^__^", "(oo)", "/(__)\\"],
+    ["/\\_/\\", "/ o o \\", "\\_^_/"],
+    [",_,", "(o,o)", '("_")'],
+]
+
+TECH_QUOTES = [
+    "Ship small. Learn fast.",
+    "Readable code scales teams.",
+    "Tests turn fear into speed.",
+    "Automation buys thinking time.",
+    "Refactor early, ship confidently.",
+    "Great DX creates great UX.",
+    "Consistency compounds quality.",
+    "Simple code survives long-term.",
+]
+
+TIME_RIGHT_NOTES = [
+    "Plan and warm up.",
+    "Build and iterate.",
+    "Feature flow window.",
+    "Deep focus zone.",
+    "Review and polish.",
+    "Debug and refine.",
+]
+
+DAY_RIGHT_NOTES = [
+    "Momentum day",
+    "Shipping day",
+    "Refactor day",
+    "Review day",
+    "Automation day",
+    "Learning day",
+    "Planning day",
+]
+
+EDITOR_RIGHT_NOTES = [
+    "Keyboard-first workflow.",
+    "Fast feedback loop.",
+    "Plugins tuned for speed.",
+    "Focus mode ready.",
+]
+
+OS_RIGHT_NOTES = [
+    "Stable dev environment.",
+    "Toolchain optimized.",
+    "Build-ready setup.",
+    "Automation friendly.",
+]
+
+CATEGORY_RIGHT_NOTES = [
+    "Design and architect.",
+    "Write tests first.",
+    "Refactor for clarity.",
+    "Document everything.",
+    "Optimize hot paths.",
+]
+
+PROJECT_RIGHT_NOTES = [
+    "Focus on target.",
+    "Fast iteration.",
+    "Refactor and clean.",
+    "Keep shipping.",
+    "Solve problems.",
+]
+
+MACHINE_RIGHT_NOTES = [
+    "Hardware optimized.",
+    "Ready to build.",
+    "Workstation tuned.",
+    "On-the-go focus.",
+]
+
+# Philippines Standard Time = UTC+8 (no DST)
+LOCAL_TZ = timezone(timedelta(hours=8))
+
+PROFILE_GITHUB_TOKEN = os.environ.get("PROFILE_GITHUB_TOKEN", "").strip()
+GITHUB_TOKEN = (
+    PROFILE_GITHUB_TOKEN
+    or os.environ.get("GITHUB_TOKEN")
+    or os.environ.get("GH_TOKEN")
+    or ""
+)
+WAKATIME_API_KEY = os.environ.get("WAKATIME_API_KEY") or ""
+WAKATIME_BASE_URL = "https://wakatime.com/api/v1/users/current"
+HEADERS = {
+    "Accept": "application/vnd.github.v3+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+}
+if GITHUB_TOKEN:
+    HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+
+
+# ── Helpers ───────────────────────────────────────────────────────────────────
+def progress_bar(pct: float) -> str:
+    filled = max(0, min(BAR_WIDTH, round(pct / 100 * BAR_WIDTH)))
+    return "▰" * filled + "▱" * (BAR_WIDTH - filled)
+
+
+BAR_LINE_PATTERN = re.compile(
+    rf"^\s*(?P<label>.+?)\s+(?P<bar>[▰▱]{{{BAR_WIDTH}}})\s+"
+    r"(?P<pct><?\s*\d+(?:\.\d+)?)\s*%(?:\s+.*)?$"
+)
+
+
+def _extract_section_percentages(block: str, start_title: str, end_title: str) -> list:
+    values = []
+    in_section = False
+    for line in block.splitlines():
+        stripped = line.strip()
+        if stripped.startswith(start_title):
+            in_section = True
+            continue
+        if in_section and stripped.startswith(end_title):
+            break
+        if not in_section:
+            continue
+
+        match = BAR_LINE_PATTERN.match(line)
+        if match:
+            values.append(float(match.group("pct")))
+    return values
+
+
+def validate_stats_block(block: str) -> None:
+    errors = []
+    checked_rows = 0
+
+    for line_no, line in enumerate(block.splitlines(), start=1):
+        match = BAR_LINE_PATTERN.match(line)
+        if not match:
+            continue
+
+        checked_rows += 1
+        pct_str = match.group("pct").strip()
+        if pct_str.startswith("<"):
+            pct = 0.5
+        else:
+            pct = float(pct_str)
+        bar = match.group("bar")
+        expected_filled = max(0, min(BAR_WIDTH, round(pct / 100 * BAR_WIDTH)))
+        actual_filled = bar.count("▰")
+
+        if not 0.0 <= pct <= 100.0:
+            errors.append(f"line {line_no}: percentage out of bounds ({pct_str}%)")
+        if actual_filled != expected_filled:
+            errors.append(
+                f"line {line_no}: bar mismatch (expected {expected_filled} filled, got {actual_filled})"
+            )
+
+    if checked_rows == 0:
+        errors.append("no progress-bar rows were found in the generated stats block")
+
+    time_values = _extract_section_percentages(
+        block,
+        start_title="I Code Most During",
+        end_title="I Am Most Productive On",
+    )
+    day_values = _extract_section_percentages(
+        block,
+        start_title="I Am Most Productive On",
+        end_title="Editors",
+    )
+
+    if len(time_values) != 4:
+        errors.append(
+            f"time-of-day section should have 4 rows, found {len(time_values)}"
+        )
+    if len(day_values) != 7:
+        errors.append(
+            f"day-of-week section should have 7 rows, found {len(day_values)}"
+        )
+
+    if time_values:
+        time_sum = sum(time_values)
+        has_time_activity = any(v > 0.0 for v in time_values)
+        if has_time_activity and abs(time_sum - 100.0) > 0.25:
+            errors.append(
+                f"time-of-day percentages should sum to ~100, got {time_sum:.2f}"
+            )
+    if day_values:
+        day_sum = sum(day_values)
+        has_day_activity = any(v > 0.0 for v in day_values)
+        if has_day_activity and abs(day_sum - 100.0) > 0.25:
+            errors.append(
+                f"day-of-week percentages should sum to ~100, got {day_sum:.2f}"
+            )
+
+    if errors:
+        raise ValueError("Stats validation failed:\n  - " + "\n  - ".join(errors))
+
+    print(f"Stats validation passed ({checked_rows} bar rows checked).")
+
+
+def _to_float(value: any, default: float = 0.0) -> float:
+    try:
+        return float(str(value).replace(",", "."))
+    except (TypeError, ValueError):
+        return default
+
+
+def format_hours(seconds: float) -> str:
+    if seconds <= 0:
+        return "n/a"
+    return f"{seconds / 3600:5.2f} h"
+
+
+def format_category_time(seconds: float) -> str:
+    if seconds <= 0:
+        return "0m"
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    if hours > 0:
+        return f"{hours}h {minutes}m"
+    if minutes == 0:
+        return "1m"
+    return f"{minutes}m"
+
+
+def with_right(main_text: str, side_text: str = "") -> str:
+    side = (side_text or "").rstrip()
+    if not side.strip():
+        return main_text
+    if len(side) > 30:
+        side = side[:27].rstrip() + "..."
+    return f"{main_text:<{MAIN_COL_WIDTH}} | {side}"
+
+
+def rotation_seed(now_text: str) -> int:
+    run_id = os.environ.get("GITHUB_RUN_ID") or "local"
+    run_attempt = os.environ.get("GITHUB_RUN_ATTEMPT") or "1"
+    source = f"{run_id}:{run_attempt}:{now_text}"
+    return sum((i + 1) * ord(ch) for i, ch in enumerate(source))
+
+
+def rotate_pick(items: list, seed: int, count: int) -> list:
+    if not items or count <= 0:
+        return []
+    return [items[(seed + i) % len(items)] for i in range(count)]
+
+
+def align_pet_rows(rows: list) -> list:
+    aligned = []
+    for row in rows:
+        cell = (row or "").rstrip()
+        pad = max(0, (PET_LINE_WIDTH - len(cell)) // 2)
+        aligned.append(" " * pad + cell)
+    return aligned
+
+
+def language_side_lines(seed: int, count: int) -> list:
+    if count <= 0:
+        return []
+
+    pet = align_pet_rows(PET_ARTS[seed % len(PET_ARTS)])
+    quote = TECH_QUOTES[(seed // 3) % len(TECH_QUOTES)]
+    lines = [
+        pet[0],
+        pet[1],
+        pet[2],
+        quote,
+    ]
+
+    if len(lines) < count:
+        remaining = count - len(lines)
+        lines.extend(rotate_pick(TECH_QUOTES, seed + 7, remaining))
+
+    return lines[:count]
+
+
+def wakatime_get(resource: str, params: dict | None = None, retries: int = 3) -> any:
+    url = f"{WAKATIME_BASE_URL}/{resource}"
+    for attempt in range(retries):
+        try:
+            r = requests.get(
+                url, auth=(WAKATIME_API_KEY, ""), params=params, timeout=20
+            )
+            if r.status_code == 429:
+                wait = int(r.headers.get("Retry-After", 60))
+                print(f"  WakaTime rate limited. Waiting {wait}s...")
+                time.sleep(wait)
+                continue
+
+            r.raise_for_status()
+            payload = r.json() if r.content else {}
+            data = payload.get("data") if isinstance(payload, dict) else None
+            if data is None:
+                print(f"  Unexpected WakaTime payload for {resource}; skipping.")
+                return None
+            return data
+        except requests.RequestException as e:
+            if attempt == retries - 1:
+                print(f"  Failed to fetch WakaTime {resource}: {e}")
+                return None
+            time.sleep(2**attempt)
+
+
+def fetch_wakatime_stats(range_str: str = "all_time", retries: int = 3) -> any:
+    if not WAKATIME_API_KEY:
+        print("  WAKATIME_API_KEY not set; skipping WakaTime data.")
+        return None
+
+    last_data = None
+    for attempt in range(retries):
+        data = wakatime_get(f"stats/{range_str}", retries=retries)
+        if isinstance(data, dict):
+            last_data = data
+            if data.get("is_up_to_date") is False:
+                print(
+                    f"  WakaTime stats ({range_str}) are not up to date (attempt {attempt + 1}/{retries}). Waiting 5s..."
+                )
+                time.sleep(5)
+                continue
+            return data
+        break
+
+    if last_data is not None:
+        print(
+            f"  WakaTime stats ({range_str}) did not finish updating, using last fetched stats."
+        )
+        return last_data
+
+    print(
+        f"  Unexpected WakaTime stats shape for ({range_str}); continuing without stats."
+    )
+    return None
+
+
+def fetch_wakatime_all_time(retries: int = 3) -> any:
+    if not WAKATIME_API_KEY:
+        return None
+    data = wakatime_get("all_time_since_today", retries=retries)
+    if isinstance(data, dict):
+        return data
+    return None
+
+
+def fetch_wakatime_summaries(days: int = 365, retries: int = 3) -> list:
+    if days > 365:
+        days = 365
+    if not WAKATIME_API_KEY:
+        return []
+    today_local = datetime.now(LOCAL_TZ).date()
+    start_date = (today_local - timedelta(days=days - 1)).isoformat()
+    end_date = today_local.isoformat()
+    data = wakatime_get(
+        "summaries", params={"start": start_date, "end": end_date}, retries=retries
+    )
+    if isinstance(data, list):
+        return data
+    return []
+
+
+def fetch_wakatime_durations(days: int = 7, retries: int = 3) -> list:
+    if days > 14:
+        days = 14
+    if not WAKATIME_API_KEY:
+        return []
+
+    durations = []
+    today_local = datetime.now(LOCAL_TZ).date()
+    for offset in range(days):
+        target_date = (today_local - timedelta(days=offset)).isoformat()
+        day_data = wakatime_get(
+            "durations", params={"date": target_date}, retries=retries
+        )
+        if isinstance(day_data, list):
+            durations.extend(day_data)
+    return durations
+
+
+def extract_wakatime_percentages(
+    wakatime_stats: any,
+    key: str,
+    limit: int = 0,
+    fallback_total_seconds: float = 0.0,
+) -> list:
+    rows = []
+    if not isinstance(wakatime_stats, dict):
+        return rows
+
+    for item in wakatime_stats.get(key) or []:
+        if not isinstance(item, dict):
+            continue
+        name = (item.get("name") or "Unknown").strip() or "Unknown"
+        if name.lower() in [
+            "".join(chr(c) for c in [48, 120, 51, 101, 102, 56]),
+            "".join(chr(c) for c in [120, 51, 101, 102, 56]),
+        ]:
+            name = "0xp47"
+        pct = max(0.0, min(100.0, _to_float(item.get("percent"), 0.0)))
+        total_seconds = _to_float(item.get("total_seconds"), 0.0)
+        if total_seconds <= 0 and fallback_total_seconds > 0 and pct > 0:
+            total_seconds = fallback_total_seconds * (pct / 100.0)
+        rows.append((name, pct, total_seconds))
+
+    rows.sort(key=lambda x: -x[1])
+    return rows[:limit] if limit > 0 else rows
+
+
+def wakatime_activity_stats(wakatime_durations: list) -> tuple:
+    hour_map = {"Morning": 0.0, "Daytime": 0.0, "Evening": 0.0, "Night": 0.0}
+    day_map: dict = defaultdict(float)
+    total_seconds = 0.0
+
+    for item in wakatime_durations:
+        if not isinstance(item, dict):
+            continue
+
+        start_ts = item.get("time")
+        duration_sec = _to_float(item.get("duration"), 0.0)
+        if duration_sec <= 0.0:
+            continue
+
+        try:
+            local_dt = datetime.fromtimestamp(float(start_ts), tz=LOCAL_TZ)
+        except (TypeError, ValueError, OSError):
+            continue
+
+        h = local_dt.hour
+        bucket = (
+            "Morning"
+            if 6 <= h < 12
+            else "Daytime" if 12 <= h < 18 else "Evening" if 18 <= h < 24 else "Night"
+        )
+        hour_map[bucket] += duration_sec
+        day_map[local_dt.strftime("%A")] += duration_sec
+        total_seconds += duration_sec
+
+    return hour_map, dict(day_map), total_seconds
+
+
+def wakatime_day_stats_from_summaries(summaries: list) -> dict:
+    day_map: dict = defaultdict(float)
+    for item in summaries:
+        if not isinstance(item, dict):
+            continue
+
+        range_obj = item.get("range")
+        if not isinstance(range_obj, dict):
+            continue
+        date_text = range_obj.get("date")
+        if not date_text:
+            continue
+
+        grand_total = item.get("grand_total")
+        if not isinstance(grand_total, dict):
+            continue
+        total_seconds = _to_float(grand_total.get("total_seconds"), 0.0)
+        if total_seconds <= 0.0:
+            continue
+
+        try:
+            day_name = datetime.fromisoformat(str(date_text)).strftime("%A")
+        except ValueError:
+            continue
+
+        day_map[day_name] += total_seconds
+
+    return dict(day_map)
+
+
+def paginate(url: str) -> list:
+    results, next_url = [], url
+    while next_url:
+        r = requests.get(next_url, headers=HEADERS, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+        results.extend(data if isinstance(data, list) else [data])
+        next_url = None
+        for part in r.headers.get("Link", "").split(","):
+            if 'rel="next"' in part:
+                next_url = part.split(";")[0].strip().strip("<>")
+    return results
+
+
+# ── Data fetching ─────────────────────────────────────────────────────────────
+def fetch_repos() -> list:
+    if PROFILE_GITHUB_TOKEN:
+        try:
+            repos = paginate(
+                "https://api.github.com/user/repos"
+                "?per_page=100&visibility=all&affiliation=owner&sort=pushed"
+            )
+            if repos:
+                return repos
+        except requests.RequestException as e:
+            print(f"  Failed private-repo fetch; falling back to public repos: {e}")
+
+    return paginate(
+        f"https://api.github.com/users/{GITHUB_USERNAME}/repos"
+        "?per_page=100&type=owner&sort=pushed"
+    )
+
+
+# ── Block generator ───────────────────────────────────────────────────────────
+def build_stats_block(
+    repos: list,
+    wakatime_stats: any,
+    wakatime_stats_7d: any,
+    wakatime_durations: list,
+    wakatime_summaries: list,
+    wakatime_all_time: any = None,
+) -> str:
+    own = [r for r in repos if not r.get("fork")]
+    public_count = sum(1 for r in own if not r.get("private"))
+    private_count = sum(1 for r in own if r.get("private"))
+    stars = sum(r.get("stargazers_count", 0) for r in own)
+    year = datetime.now(timezone.utc).year
+    now = datetime.now(LOCAL_TZ).strftime("%Y-%m-%d %H:%M:%S PHT")
+    SEP = "━" * 58
+    seed = rotation_seed(now)
+
+    if private_count > 0:
+        repo_visibility = (
+            f"{len(own)} repos ({public_count} public, {private_count} private)"
+        )
+    else:
+        repo_visibility = f"{public_count}+ public repos"
+
+    hour_map, _, duration_total = wakatime_activity_stats(wakatime_durations)
+
+    wt_languages = extract_wakatime_percentages(
+        wakatime_stats,
+        "languages",
+        limit=8,
+        fallback_total_seconds=duration_total,
+    )
+    wt_editors = extract_wakatime_percentages(
+        wakatime_stats,
+        "editors",
+        limit=5,
+        fallback_total_seconds=duration_total,
+    )
+    wt_os = extract_wakatime_percentages(
+        wakatime_stats,
+        "operating_systems",
+        limit=5,
+        fallback_total_seconds=duration_total,
+    )
+    wt_projects = extract_wakatime_percentages(
+        wakatime_stats_7d,
+        "projects",
+        limit=5,
+        fallback_total_seconds=duration_total,
+    )
+    wt_machines = extract_wakatime_percentages(
+        wakatime_stats,
+        "machines",
+        limit=5,
+        fallback_total_seconds=duration_total,
+    )
+
+    day_map = wakatime_day_stats_from_summaries(wakatime_summaries)
+
+    total_time = "n/a"
+    daily_avg = "n/a"
+    all_time_total_seconds = 0.0
+    if isinstance(wakatime_stats, dict):
+        total_time = wakatime_stats.get("human_readable_total") or "n/a"
+        daily_avg = wakatime_stats.get("human_readable_daily_average") or "n/a"
+        all_time_total_seconds = _to_float(wakatime_stats.get("total_seconds"), 0.0)
+
+    top_lang_name = "n/a"
+    top_lang_pct = 0.0
+    if wt_languages:
+        top_lang_name, top_lang_pct, _ = wt_languages[0]
+
+    top_editor_name = "n/a"
+    top_editor_pct = 0.0
+    if wt_editors:
+        top_editor_name, top_editor_pct, _ = wt_editors[0]
+
+    if duration_total > 0:
+        peak_slot, peak_slot_seconds = max(hour_map.items(), key=lambda x: x[1])
+        peak_slot_pct = peak_slot_seconds / duration_total * 100
+    else:
+        peak_slot, peak_slot_pct = "n/a", 0.0
+
+    day_total_for_peak = sum(day_map.values())
+    if day_total_for_peak > 0:
+        peak_day, peak_day_seconds = max(day_map.items(), key=lambda x: x[1])
+        peak_day_pct = peak_day_seconds / day_total_for_peak * 100
+    else:
+        peak_day, peak_day_pct = "n/a", 0.0
+
+    tracked_sessions = len(wakatime_durations)
+
+    L = []
+    L.append(with_right("0xp47 · Dev Metrics", "Quick Insights"))
+    L.append(
+        with_right(
+            f"From: {START_YEAR} - To: {year}",
+            f"Top Lang : {top_lang_name} ({top_lang_pct:5.2f}%)",
+        )
+    )
+    L.append(
+        with_right(
+            f"{repo_visibility}   |   {stars} stars",
+            f"Top Editor: {top_editor_name} ({top_editor_pct:5.2f}%)",
+        )
+    )
+    all_time_str = "n/a"
+    if isinstance(wakatime_all_time, dict):
+        all_time_str = wakatime_all_time.get("text") or "n/a"
+
+    L.append(
+        with_right(
+            f"WakaTime (all time): {total_time} total · {daily_avg} daily avg",
+            f"Peak Time: {peak_slot} ({peak_slot_pct:5.2f}%)",
+        )
+    )
+    L.append(with_right("", f"Peak Day : {peak_day} ({peak_day_pct:5.2f}%)"))
+    L.append(with_right("", f"All-Time : {all_time_str}"))
+    L.append(with_right("", f"Activity : {tracked_sessions} chunks"))
+    L.append("Stats & Proficiency")
+    L.append("")
+    L.append(SEP)
+    L.append("")
+
+    # Languages (WakaTime)
+    L.append(" Languages")
+    if wt_languages:
+        lang_right = language_side_lines(seed, len(wt_languages))
+        for idx, (lang_name, lang_pct, lang_seconds) in enumerate(wt_languages):
+            row = f" {lang_name:<17} {progress_bar(lang_pct)}   {lang_pct:5.2f} %   | {format_hours(lang_seconds):>7}"
+            L.append(with_right(row, lang_right[idx]))
+    else:
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
+    L.append("")
+    L.append(SEP)
+    L.append("")
+
+    # Projects (WakaTime)
+    L.append(" Projects")
+    if wt_projects:
+        proj_right = rotate_pick(PROJECT_RIGHT_NOTES, seed + 67, len(wt_projects))
+        for idx, (proj_name, proj_pct, proj_seconds) in enumerate(wt_projects):
+            time_str = format_category_time(proj_seconds)
+            if 0 < proj_pct < 1:
+                pct_str = "<1 %"
+            else:
+                pct_str = f"{proj_pct:5.2f} %"
+            row = f" {proj_name:<17} {progress_bar(proj_pct)}   {pct_str:>8}   | {time_str:>7}"
+            L.append(with_right(row, proj_right[idx]))
+    else:
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
+    L.append("")
+    L.append(SEP)
+    L.append("")
+
+    # Time of day (WakaTime durations)
+    L.append(" I Code Most During")
+    L.append("")
+    time_right = rotate_pick(TIME_RIGHT_NOTES, seed + 11, 4)
+    for slot, rng in [
+        ("Morning", "06-12"),
+        ("Daytime", "12-18"),
+        ("Evening", "18-24"),
+        ("Night", "00-06"),
+    ]:
+        seconds_14d = hour_map.get(slot, 0.0)
+        pct = seconds_14d / duration_total * 100 if duration_total else 0
+        seconds = (
+            all_time_total_seconds * (pct / 100.0)
+            if all_time_total_seconds > 0
+            else seconds_14d
+        )
+        row = f" {slot:<10} ({rng})   {progress_bar(pct)}   {pct:5.2f} %   | {format_hours(seconds):>7}"
+        L.append(with_right(row, time_right.pop(0)))
+
+    L.append("")
+    L.append(" I Am Most Productive On")
+    L.append("")
+    day_total = sum(day_map.values())
+    day_right = rotate_pick(DAY_RIGHT_NOTES, seed + 29, 7)
+    for day in [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]:
+        seconds = day_map.get(day, 0.0)
+        pct = seconds / day_total * 100 if day_total else 0
+        row = f" {day:<10} {progress_bar(pct)}   {pct:5.2f} %   | {format_hours(seconds):>7}"
+        L.append(with_right(row, day_right.pop(0)))
+    L.append("")
+    L.append(SEP)
+    L.append("")
+
+    # Editors (WakaTime)
+    L.append(" Editors")
+    if wt_editors:
+        edit_right = rotate_pick(EDITOR_RIGHT_NOTES, seed + 41, len(wt_editors))
+        for idx, (edit_name, edit_pct, edit_seconds) in enumerate(wt_editors):
+            if 0 < edit_pct < 1:
+                pct_str = "<1 %"
+            else:
+                pct_str = f"{edit_pct:5.2f} %"
+            row = f" {edit_name:<17} {progress_bar(edit_pct)}   {pct_str:>8}   | {format_hours(edit_seconds):>7}"
+            L.append(with_right(row, edit_right[idx]))
+    else:
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
+    L.append("")
+
+    # Operating Systems (WakaTime)
+    L.append(" Operating Systems")
+    if wt_os:
+        os_right = rotate_pick(OS_RIGHT_NOTES, seed + 53, len(wt_os))
+        for idx, (os_name, os_pct, os_seconds) in enumerate(wt_os):
+            if 0 < os_pct < 1:
+                pct_str = "<1 %"
+            else:
+                pct_str = f"{os_pct:5.2f} %"
+            row = f" {os_name:<17} {progress_bar(os_pct)}   {pct_str:>8}   | {format_hours(os_seconds):>7}"
+            L.append(with_right(row, os_right[idx]))
+    else:
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
+    L.append("")
+
+    # Machines & Devices (WakaTime)
+    L.append(" Machines & Devices")
+    if wt_machines:
+        mach_right = rotate_pick(MACHINE_RIGHT_NOTES, seed + 89, len(wt_machines))
+        for idx, (mach_name, mach_pct, mach_seconds) in enumerate(wt_machines):
+            if 0 < mach_pct < 1:
+                pct_str = "<1 %"
+            else:
+                pct_str = f"{mach_pct:5.2f} %"
+            row = f" {mach_name:<17} {progress_bar(mach_pct)}   {pct_str:>8}   | {format_hours(mach_seconds):>7}"
+            L.append(with_right(row, mach_right[idx]))
+    else:
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
+    L.append("")
+    L.append(SEP)
+    L.append(
+        f" Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: {now}"
+    )
+
+    return "\n".join(L)
+
+
+# ── README patcher ────────────────────────────────────────────────────────────
+def patch_readme(block: str) -> bool:
+    with open(README_PATH, "r", encoding="utf-8") as f:
+        original = f.read()
+
+    replacement = f"{MARKER_START}\n" f"```text\n" f"{block}\n" f"```\n" f"{MARKER_END}"
+    new_content = re.sub(
+        rf"{re.escape(MARKER_START)}.*?{re.escape(MARKER_END)}",
+        replacement,
+        original,
+        flags=re.DOTALL,
+    )
+    if new_content == original:
+        print("README unchanged — nothing to commit.")
+        return False
+
+    with open(README_PATH, "w", encoding="utf-8") as f:
+        f.write(new_content)
+    print("README.md updated.")
+    return True
+
+
+# ── Entry point ───────────────────────────────────────────────────────────────
+def main():
+    print(f"Fetching repos for {GITHUB_USERNAME}...")
+    repos = fetch_repos()
+    own = [r for r in repos if not r.get("fork")]
+    public_count = sum(1 for r in own if not r.get("private"))
+    private_count = sum(1 for r in own if r.get("private"))
+    print(
+        f"  {len(own)} own repos ({public_count} public, {private_count} private, {len(repos) - len(own)} forks excluded)"
+    )
+
+    print("Fetching WakaTime stats (all time)...")
+    wakatime_stats = fetch_wakatime_stats(range_str="all_time")
+
+    print("Fetching WakaTime stats (7 days)...")
+    wakatime_stats_7d = fetch_wakatime_stats(range_str="last_7_days")
+
+    print("Fetching WakaTime all-time total...")
+    wakatime_all_time = fetch_wakatime_all_time()
+
+    print("Fetching WakaTime summaries for all time...")
+    today_local = datetime.now(LOCAL_TZ).date()
+    start_of_tracking = datetime(START_YEAR, 1, 1, tzinfo=LOCAL_TZ).date()
+    days_since_start = (today_local - start_of_tracking).days + 1
+    wakatime_summaries = fetch_wakatime_summaries(days=days_since_start)
+
+    print("Fetching WakaTime durations...")
+    wakatime_durations = fetch_wakatime_durations(days=14)
+    print(f"  {len(wakatime_durations)} duration records")
+
+    print("Building stats block...")
+    block = build_stats_block(
+        repos,
+        wakatime_stats,
+        wakatime_stats_7d,
+        wakatime_durations,
+        wakatime_summaries,
+        wakatime_all_time,
+    )
+
+    print("Validating stats block...")
+    validate_stats_block(block)
+
+    print("Patching README.md...")
+    patch_readme(block)
+
+
+if __name__ == "__main__":
+    main()

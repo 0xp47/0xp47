@@ -1,0 +1,51 @@
+name: Auto Labeler
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    name: Auto Triage Issue
+
+    steps:
+      - name: Auto Label Issue
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = (issue.body || '').toLowerCase();
+            
+            const labels = [];
+            
+            // Checking for bug indicators
+            if (title.includes('bug') || body.includes('bug') || title.includes('error') || body.includes('error') || title.includes('broken') || body.includes('broken')) {
+              labels.push('bug');
+            }
+            
+            // Checking for features/enhancements
+            if (title.includes('feat') || body.includes('feat') || title.includes('enhance') || body.includes('enhance') || title.includes('request') || body.includes('request')) {
+              labels.push('enhancement');
+            }
+            
+            // Checking for documentation
+            if (title.includes('doc') || body.includes('doc') || title.includes('readme') || body.includes('readme')) {
+              labels.push('documentation');
+            }
+            
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels
+              });
+              console.log(`Successfully added labels: ${labels.join(', ')}`);
+            } else {
+              console.log('No matching keywords found for auto-labeling.');
+            }

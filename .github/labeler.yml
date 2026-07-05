@@ -1,0 +1,20 @@
+# Configuration for actions/labeler
+python:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.py'
+
+workflows:
+  - changed-files:
+      - any-glob-to-any-file: '.github/workflows/*.yml'
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'README.md'
+          - 'README.fil.md'
+          - 'CHANGELOG.md'
+          - 'docs/**/*'
+
+dotfiles:
+  - changed-files:
+      - any-glob-to-any-file: 'dotfiles/**/*'

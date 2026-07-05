@@ -1,0 +1,33 @@
+name: Discord Activity Broadcaster
+
+on:
+  issues:
+    types: [opened, closed]
+  pull_request:
+    types: [opened, closed]
+  watch:
+    types: [started] # Triggered when repository is starred
+
+jobs:
+  broadcast:
+    runs-on: ubuntu-latest
+    name: Broadcast to Discord
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Broadcaster
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: python .github/scripts/discord_broadcast.py

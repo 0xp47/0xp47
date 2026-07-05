@@ -1,0 +1,41 @@
+name: Farm GitHub Achievements
+
+on:
+  schedule:
+    - cron: '0 23 * * *'   # Daily at 7:00 AM PHT (23:00 UTC)
+  workflow_dispatch:
+    inputs:
+      pr_count:
+        description: 'Number of PRs to farm (e.g. 5, 10, 50)'
+        required: true
+        default: '5'
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  farm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Farming Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_COUNT="${{ github.event.inputs.pr_count }}"
+          if [ -z "$PR_COUNT" ]; then
+            PR_COUNT="1"
+          fi
+          python .github/scripts/farm_achievements.py "$PR_COUNT"

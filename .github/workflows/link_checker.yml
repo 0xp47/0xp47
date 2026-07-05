@@ -1,0 +1,65 @@
+name: Broken Link Checker
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'   # Run every Sunday at midnight (UTC)
+  workflow_dispatch:      # Allow manual triggering
+
+permissions:
+  issues: write
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    name: Check README Links
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Link Checker
+        id: checker
+        run: python .github/scripts/check_links.py
+        continue-on-error: true
+
+      - name: Create Issue if Links are Broken
+        if: steps.checker.outcome == 'failure'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const issueTitle = '⚠️ Broken Links Detected in README.md';
+            const issueBody = `The scheduled broken link checker failed. Please review the build log and update any invalid links in README.md.
+            
+            [View Workflow run log](${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID})`;
+            
+            // Check if there's already an open issue with the same title to avoid duplicates
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              creator: 'github-actions[bot]'
+            });
+            
+            const existingIssue = issues.data.find(issue => issue.title === issueTitle);
+            
+            if (!existingIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: issueTitle,
+                body: issueBody,
+                labels: ['bug', 'documentation']
+              });
+              console.log('Opened new issue.');
+            } else {
+              console.log('Issue already exists, skipping creation.');
+            }

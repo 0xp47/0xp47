@@ -1,0 +1,46 @@
+name: Sync GitHub Activity
+
+on:
+  schedule:
+    - cron: '0 23 * * *'   # Daily at 7:00 AM PHT (23:00 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Sync Activity
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python .github/scripts/sync_activity.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md README.fil.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(readme): sync recent github activity logs [skip ci]"
+            git push origin main
+          else
+            echo "No new activity changes to push"
+          fi
