@@ -54,6 +54,7 @@ export default developer;
 ```
 
 <!-- STATS:START -->
+
 ```text
 0xp47 · Dev Metrics                                                        | Quick Insights
 From: 2020 - To: 2026                                                      | Top Lang : Python (25.83%)
@@ -129,4 +130,5 @@ Stats & Proficiency
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 19:01:04 PHT
 ```
+
 <!-- STATS:END -->
