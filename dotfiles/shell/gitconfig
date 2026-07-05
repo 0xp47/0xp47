@@ -4,7 +4,7 @@
 [credential "https://huggingface.co"]
 	provider = generic
 [core]
-	editor = \"C:\\Users\\0x3EF8\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+	editor = \"C:\\Users\\0xp47\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

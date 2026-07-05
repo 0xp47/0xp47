@@ -68,7 +68,7 @@
         }
     ],
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "window.newWindowProfile": "0x3EF8",
+    "window.newWindowProfile": "0xp47",
     "github.copilot.nextEditSuggestions.enabled": true,
     "editor.stickyScroll.enabled": false,
     "workbench.settings.applyToAllProfiles": [
