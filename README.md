@@ -54,7 +54,6 @@ export default developer;
 ```
 
 <!-- STATS:START -->
-
 ```text
 0xp47 · Dev Metrics                                                        | Quick Insights
 From: 2020 - To: 2026                                                      | Top Lang : Python (25.83%)
@@ -68,10 +67,10 @@ Stats & Proficiency
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Languages
- Python            ▰▰▰▱▱▱▱▱▱▱   25.83 %   | 231.36 h                       |  (\_/)
- JavaScript        ▰▰▱▱▱▱▱▱▱▱   23.00 %   | 206.01 h                       |  (o.o)
- TypeScript        ▰▱▱▱▱▱▱▱▱▱   11.04 %   | 98.87 h                        |  /|_|\
- PHP               ▰▱▱▱▱▱▱▱▱▱    9.15 %   | 81.96 h                        | Great DX creates great UX.
+ Python            ▰▰▰▱▱▱▱▱▱▱   25.83 %   | 231.36 h                       |  /\_/\
+ JavaScript        ▰▰▱▱▱▱▱▱▱▱   23.00 %   | 206.01 h                       | ( o.o )
+ TypeScript        ▰▱▱▱▱▱▱▱▱▱   11.04 %   | 98.87 h                        |  > ^ <
+ PHP               ▰▱▱▱▱▱▱▱▱▱    9.15 %   | 81.96 h                        | Automation buys thinking time.
  Markdown          ▰▱▱▱▱▱▱▱▱▱    6.30 %   | 56.39 h                        | Ship small. Learn fast.
  SQL               ▱▱▱▱▱▱▱▱▱▱    4.83 %   | 43.23 h                        | Readable code scales teams.
  JSON              ▱▱▱▱▱▱▱▱▱▱    4.22 %   | 37.76 h                        | Tests turn fear into speed.
@@ -80,30 +79,30 @@ Stats & Proficiency
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Projects
- Pat               ▰▰▰▰▰▱▱▱▱▱    53.85 %   |  7h 12m                       | Keep shipping.
- ground-zero       ▰▰▰▱▱▱▱▱▱▱    26.31 %   |  3h 31m                       | Solve problems.
- community         ▰▱▱▱▱▱▱▱▱▱     9.04 %   |  1h 12m                       | Focus on target.
- instructions      ▱▱▱▱▱▱▱▱▱▱     3.65 %   |     29m                       | Fast iteration.
- developer portfolio ▱▱▱▱▱▱▱▱▱▱     2.28 %   |     18m                     | Refactor and clean.
+ Pat               ▰▰▰▰▰▱▱▱▱▱    53.85 %   |  7h 12m                       | Refactor and clean.
+ ground-zero       ▰▰▰▱▱▱▱▱▱▱    26.31 %   |  3h 31m                       | Keep shipping.
+ community         ▰▱▱▱▱▱▱▱▱▱     9.04 %   |  1h 12m                       | Solve problems.
+ instructions      ▱▱▱▱▱▱▱▱▱▱     3.65 %   |     29m                       | Focus on target.
+ developer portfolio ▱▱▱▱▱▱▱▱▱▱     2.28 %   |     18m                     | Fast iteration.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  I Code Most During
 
- Morning    (06-12)   ▱▱▱▱▱▱▱▱▱▱    2.85 %   | 24.93 h                     | Review and polish.
- Daytime    (12-18)   ▰▰▰▰▱▱▱▱▱▱   41.67 %   | 364.76 h                    | Debug and refine.
- Evening    (18-24)   ▰▰▱▱▱▱▱▱▱▱   19.15 %   | 167.63 h                    | Plan and warm up.
- Night      (00-06)   ▰▰▰▰▱▱▱▱▱▱   36.33 %   | 317.98 h                    | Build and iterate.
+ Morning    (06-12)   ▱▱▱▱▱▱▱▱▱▱    2.85 %   | 24.93 h                     | Feature flow window.
+ Daytime    (12-18)   ▰▰▰▰▱▱▱▱▱▱   41.67 %   | 364.76 h                    | Deep focus zone.
+ Evening    (18-24)   ▰▰▱▱▱▱▱▱▱▱   19.15 %   | 167.63 h                    | Review and polish.
+ Night      (00-06)   ▰▰▰▰▱▱▱▱▱▱   36.33 %   | 317.98 h                    | Debug and refine.
 
  I Am Most Productive On
 
- Monday     ▰▰▱▱▱▱▱▱▱▱   18.09 %   | 110.31 h                              | Shipping day
- Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.83 %   | 78.25 h                               | Refactor day
- Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.49 %   | 76.17 h                               | Review day
- Thursday   ▰▰▱▱▱▱▱▱▱▱   15.56 %   | 94.88 h                               | Automation day
- Friday     ▰▱▱▱▱▱▱▱▱▱   12.35 %   | 75.32 h                               | Learning day
- Saturday   ▰▱▱▱▱▱▱▱▱▱   14.89 %   | 90.79 h                               | Planning day
- Sunday     ▰▱▱▱▱▱▱▱▱▱   13.77 %   | 83.94 h                               | Momentum day
+ Monday     ▰▰▱▱▱▱▱▱▱▱   18.09 %   | 110.31 h                              | Learning day
+ Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.83 %   | 78.25 h                               | Planning day
+ Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.49 %   | 76.17 h                               | Momentum day
+ Thursday   ▰▰▱▱▱▱▱▱▱▱   15.56 %   | 94.88 h                               | Shipping day
+ Friday     ▰▱▱▱▱▱▱▱▱▱   12.35 %   | 75.32 h                               | Refactor day
+ Saturday   ▰▱▱▱▱▱▱▱▱▱   14.89 %   | 90.79 h                               | Review day
+ Sunday     ▰▱▱▱▱▱▱▱▱▱   13.77 %   | 83.94 h                               | Automation day
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -128,7 +127,6 @@ Stats & Proficiency
  ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.83 %   | 25.35 h                       | Workstation tuned.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 18:42:11 PHT
+ Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 18:43:57 PHT
 ```
-
 <!-- STATS:END -->
