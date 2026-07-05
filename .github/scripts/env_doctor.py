@@ -45,7 +45,7 @@ TOOLS = {
 
 def run_doctor():
     print("=" * 60)
-    print("🏥 Ground Zero Dev Environment Doctor")
+    print("🏥 0xp47 Dev Environment Doctor")
     print("Checking your local system for required tools...")
     print("=" * 60 + "\n")
 

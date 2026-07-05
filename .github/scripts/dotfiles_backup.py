@@ -105,7 +105,7 @@ def backup_shell_configs():
 
 def main():
     print("=" * 60)
-    print("🗂️  Ground Zero Dotfiles Backup Manager")
+    print("🗂️  0xp47 Dotfiles Backup Manager")
     print("Starting backup of your system configurations...")
     print("=" * 60 + "\n")
 

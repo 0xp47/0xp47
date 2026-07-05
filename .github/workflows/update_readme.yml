@@ -2,7 +2,7 @@ name: Update README Stats
 
 on:
   schedule:
-    - cron: '0 */12 * * *'   # Every 12 hours (UTC)
+    - cron: '0 23 * * *'   # Daily at 7:00 AM PHT (23:00 UTC)
   push:
     branches:
       - main

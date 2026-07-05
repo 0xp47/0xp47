@@ -35,11 +35,11 @@ jobs:
             if (response.data.length <= 1) {
               const welcomeMessage = `👋 Hello @${creator}!
               
-              Welcome to the **Ground Zero Community**! Thank you for opening an issue in this repository. 
+              Welcome to **@0xp47's repository**! Thank you for opening an issue. 
               
-              Whether you are here to report a bug, request a feature, or ask a question, we're glad to have you. A member of our community or project team will review this shortly.
+              Whether you are here to report a bug, request a feature, or ask a question, we're glad to have you. We will review this shortly.
               
-              ### 🌐 Connect with Ground Zero:
+              ### 🌐 Connect with 0xp47:
               * **Discord Server**: [Join our Discord](https://discord.gg/4H2v6UwjmY)
               * **Facebook Group**: [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
               * **Facebook Page**: [Ground Zero Digital](https://www.facebook.com/GroundZeroDigital/)
@@ -72,7 +72,7 @@ jobs:
             const userPrs = response.data.filter(pr => pr.user.login === creator);
             
             if (userPrs.length <= 1) {
-              const welcomeMessage = `🎉 Welcome @${creator} to the **Ground Zero Community**!
+              const welcomeMessage = `🎉 Welcome @${creator} to **@0xp47's repository**!
               
               Thank you so much for your pull request! Contributing code or updates is the best way to grow together as developers. We really appreciate your effort.
               

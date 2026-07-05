@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Ground Zero Discord Bot Client Template
+0xp47 Discord Bot Client Template
 Utilizes discord.py to serve profile and repository stats directly to Discord channels.
 Instructions:
   1. Install dependencies: pip install discord.py requests
@@ -134,17 +134,17 @@ async def achievements(interaction: discord.Interaction):
         value="Unlocked (First PR merged without review)",
         inline=False,
     )
-    embed.set_footer(text="Ground Zero Achievement tracker bot")
+    embed.set_footer(text="0xp47 Achievement tracker bot")
 
     await interaction.followup.send(embed=embed)
 
 
 @client.tree.command(
-    name="links", description="Show Ground Zero Community invite links"
+    name="links", description="Show 0xp47 profile and community links"
 )
 async def links(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="🌐 Ground Zero Community Hub",
+        title="🌐 0xp47 Community Hub",
         description="Connect with us across all platforms!",
         color=discord.Color.green(),
     )

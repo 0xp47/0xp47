@@ -41,11 +41,11 @@ def send_discord_rollcall(webhook_url, repo, contributors):
     headers = {"Content-Type": "application/json"}
 
     embed = {
-        "title": "🏆 Ground Zero Weekly Contributor Roll Call!",
+        "title": "🏆 0xp47 Weekly Contributor Roll Call!",
         "url": f"https://github.com/{repo}",
         "color": 10181046,  # Purple
         "footer": {
-            "text": "Ground Zero Community Recognition",
+            "text": "0xp47 Repository Contributor Roll Call",
             "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
         },
     }
@@ -68,8 +68,8 @@ def send_discord_rollcall(webhook_url, repo, contributors):
         )
 
     payload = {
-        "username": "Ground Zero Roll Call",
-        "avatar_url": "https://avatars.githubusercontent.com/u/141019001?s=200&v=4",
+        "username": "0xp47 Contributor Recognition",
+        "avatar_url": "https://github.com/0xp47.png",
         "embeds": [embed],
     }
 

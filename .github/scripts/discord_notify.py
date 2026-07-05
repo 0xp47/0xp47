@@ -67,7 +67,7 @@ def send_discord_notification(webhook_url, stats):
         "color": 3447003,  # Premium Blue
         "fields": [],
         "footer": {
-            "text": "Ground Zero DevOps automation",
+            "text": "0xp47 Profile DevOps Automation",
             "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
         },
     }
@@ -111,8 +111,8 @@ def send_discord_notification(webhook_url, stats):
         embed["description"] = "Successfully updated README metrics block."
 
     payload = {
-        "username": "Ground Zero Metrics",
-        "avatar_url": "https://avatars.githubusercontent.com/u/141019001?s=200&v=4",  # GroundZero logo avatar if available, fallback to default
+        "username": "0xp47 Profile Metrics",
+        "avatar_url": "https://github.com/0xp47.png",
         "embeds": [embed],
     }
 

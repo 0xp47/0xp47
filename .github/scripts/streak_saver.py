@@ -36,14 +36,14 @@ def send_streak_warning(webhook_url, repo):
         "description": f"⚠️ You haven't made any commits to **[{repo}](https://github.com/{repo})** today yet!\n\nMake sure to push some changes soon to keep your green square streak alive! 🟩💪",
         "color": 16730624,  # Orange/Red warning
         "footer": {
-            "text": "Ground Zero Productivity Bot",
+            "text": "0xp47 Productivity Bot",
             "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
         },
     }
 
     payload = {
         "username": "Streak Protector",
-        "avatar_url": "https://cdn-icons-png.flaticon.com/512/864/864685.png",
+        "avatar_url": "https://github.com/0xp47.png",
         "embeds": [embed],
     }
 

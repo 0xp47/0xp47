@@ -10,7 +10,7 @@ def get_event_embed(event_name, event_data):
         "color": 3066993,  # Default Green
         "fields": [],
         "footer": {
-            "text": "Ground Zero GitOps Broadcast",
+            "text": "0xp47 GitOps Broadcast",
             "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
         },
     }
@@ -100,8 +100,8 @@ def main():
     embed = get_event_embed(event_name, event_data)
 
     payload = {
-        "username": "Ground Zero Hub",
-        "avatar_url": "https://avatars.githubusercontent.com/u/141019001?s=200&v=4",
+        "username": "0xp47 Hub",
+        "avatar_url": "https://github.com/0xp47.png",
         "embeds": [embed],
     }
 
