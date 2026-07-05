@@ -6,6 +6,8 @@ All notable changes to this repository will be documented in this file.
 
 ## 🚀 Features
 
+- **archiving-triaging**: integrate PR linter/labeler, auto-todo issue creator, and automated metadata backups workflow (164ff1e) - by @0xp47
+
 - **security-analytics**: integrate gitleaks scanner, automated changelog generator, multi-repo language stats card, and CodeQL security auditing (19e52e4) - by @0xp47
 
 - **readme**: add auto-updating tech stack badges detector and workflow (7b89194) - by @0xp47
@@ -35,6 +37,14 @@ All notable changes to this repository will be documented in this file.
 
 
 ## 🔧 Maintenance & Chores
+
+- **readme**: auto-update dev metrics [skip ci] (b934ddf) - by @github-actions[bot]
+
+- auto-format code and docs [skip ci] (54c4ab2) - by @github-actions[bot]
+
+- **docs**: sync translated README.fil.md [skip ci] (e0aac30) - by @github-actions[bot]
+
+- **changelog**: auto-update CHANGELOG.md [skip ci] (ac8f31e) - by @github-actions[bot]
 
 - **stats**: remove multi-repository language distribution stats card, script, and workflow (f3c2670) - by @0xp47
 
