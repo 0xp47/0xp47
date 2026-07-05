@@ -1,0 +1,28 @@
+name: Todo to Issue
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'README.md'
+      - 'README.fil.md'
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  todo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Todo to Issue
+        uses: alaska-dev/todo-to-issue-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          exclude: ".git,node_modules,__pycache__,images,dotfiles"

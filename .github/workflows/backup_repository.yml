@@ -1,0 +1,59 @@
+name: Automated Repository Backup
+
+on:
+  schedule:
+    - cron: '0 23 * * *'   # Daily at 7:00 AM PHT (23:00 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Run Backup Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python .github/scripts/backup_metadata.py
+
+      - name: Push Backup to backups Branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git stash
+          
+          if git show-ref --quiet refs/remotes/origin/backups; then
+            git checkout backups
+            git pull origin backups || true
+          else
+            git checkout --orphan backups
+            git rm -rf . || true
+          fi
+          
+          git stash pop || true
+          
+          # Ensure backups folder exists and we stage the files
+          git add backups/*.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(backup): auto-save repository metadata backup [skip ci]"
+            git push origin backups
+          else
+            echo "No new backup files to commit"
+          fi
