@@ -6,6 +6,8 @@ All notable changes to this repository will be documented in this file.
 
 ## 🚀 Features
 
+- **ci**: configure dependabot and automatically upgrade all github actions to latest major versions (aa5d0bd) - by @0xp47
+
 - **archiving-triaging**: integrate PR linter/labeler, auto-todo issue creator, and automated metadata backups workflow (164ff1e) - by @0xp47
 
 - **security-analytics**: integrate gitleaks scanner, automated changelog generator, multi-repo language stats card, and CodeQL security auditing (19e52e4) - by @0xp47
@@ -37,6 +39,12 @@ All notable changes to this repository will be documented in this file.
 
 
 ## 🔧 Maintenance & Chores
+
+- **readme**: auto-update dev metrics [skip ci] (7957151) - by @github-actions[bot]
+
+- auto-format code and docs [skip ci] (e7690cb) - by @github-actions[bot]
+
+- **changelog**: auto-update CHANGELOG.md [skip ci] (9a31847) - by @github-actions[bot]
 
 - **readme**: auto-update dev metrics [skip ci] (b934ddf) - by @github-actions[bot]
 
