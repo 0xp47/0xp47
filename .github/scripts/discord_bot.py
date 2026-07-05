@@ -19,6 +19,7 @@ TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
 REPO_URL = "https://raw.githubusercontent.com/0xp47/0xp47/main/README.md"
 PR_PROGRESS_URL = "https://raw.githubusercontent.com/0xp47/0xp47/main/achievements/pull-shark-progress.md"
 
+
 class Client(discord.Client):
     def __init__(self):
         intents = discord.Intents.default()
@@ -34,7 +35,9 @@ class Client(discord.Client):
         print(f"Logged in as {self.user} (ID: {self.user.id})")
         print("------")
 
+
 client = Client()
+
 
 def parse_waka_stats():
     try:
@@ -42,104 +45,141 @@ def parse_waka_stats():
         if res.status_code != 200:
             return None
         content = res.text
-        
+
         # Search for metrics block
-        match = re.search(r'WakaTime \(all time\):\s*([^\n|]+)', content)
+        match = re.search(r"WakaTime \(all time\):\s*([^\n|]+)", content)
         waka_time = match.group(1).strip() if match else "Unknown"
-        
+
         top_lang = "Unknown"
-        lang_match = re.search(r'Top Lang\s*:\s*([^\n|]+)', content)
+        lang_match = re.search(r"Top Lang\s*:\s*([^\n|]+)", content)
         if lang_match:
             top_lang = lang_match.group(1).strip()
-            
+
         top_editor = "Unknown"
-        editor_match = re.search(r'Top Editor:\s*([^\n|]+)', content)
+        editor_match = re.search(r"Top Editor:\s*([^\n|]+)", content)
         if editor_match:
             top_editor = editor_match.group(1).strip()
-            
-        return {
-            "waka_time": waka_time,
-            "top_lang": top_lang,
-            "top_editor": top_editor
-        }
+
+        return {"waka_time": waka_time, "top_lang": top_lang, "top_editor": top_editor}
     except Exception:
         return None
 
-@client.tree.command(name="stats", description="Displays 0xp47's coding stats from WakaTime")
+
+@client.tree.command(
+    name="stats", description="Displays 0xp47's coding stats from WakaTime"
+)
 async def stats(interaction: discord.Interaction):
     await interaction.response.defer()
     data = parse_waka_stats()
-    
+
     if not data:
         await interaction.followup.send("❌ Error: Could not fetch stats from GitHub.")
         return
-        
+
     embed = discord.Embed(
         title="📊 0xp47's Coding Statistics",
         color=discord.Color.blue(),
-        url="https://github.com/0xp47/0xp47"
+        url="https://github.com/0xp47/0xp47",
     )
     embed.add_field(name="⏱️ Total Coding Time", value=data["waka_time"], inline=False)
     embed.add_field(name="💻 Top Language", value=data["top_lang"], inline=True)
     embed.add_field(name="✍️ Top Editor", value=data["top_editor"], inline=True)
     embed.set_footer(text="Data fetched from GitHub profile README.")
-    
+
     await interaction.followup.send(embed=embed)
 
-@client.tree.command(name="achievements", description="Shows unlocked GitHub achievements progress")
+
+@client.tree.command(
+    name="achievements", description="Shows unlocked GitHub achievements progress"
+)
 async def achievements(interaction: discord.Interaction):
     await interaction.response.defer()
-    
+
     try:
         res = requests.get(PR_PROGRESS_URL, timeout=10)
         if res.status_code == 200:
             lines = res.text.strip().split("\n")
-            pr_count = len([l for l in lines if l.startswith("pr-") or l.startswith("pr-farm-")])
+            pr_count = len(
+                [l for l in lines if l.startswith("pr-") or l.startswith("pr-farm-")]
+            )
         else:
             pr_count = 0
     except Exception:
         pr_count = 0
-        
+
     embed = discord.Embed(
         title="🏆 0xp47's Achievement Progress",
         color=discord.Color.purple(),
-        url="https://github.com/0xp47/0xp47"
+        url="https://github.com/0xp47/0xp47",
     )
-    
+
     # Simple badges logic
     pull_shark_tier = "None"
-    if pr_count >= 1024: pull_shark_tier = "Gold (1024+ PRs) 🌟"
-    elif pr_count >= 128: pull_shark_tier = "Silver (128+ PRs) ⭐"
-    elif pr_count >= 16: pull_shark_tier = "Bronze (16+ PRs) ✨"
-    elif pr_count >= 2: pull_shark_tier = "Iron (2+ PRs) 🦈"
-    
-    embed.add_field(name="🦈 Pull Shark Progress", value=f"{pr_count} PRs merged. Current tier: **{pull_shark_tier}**", inline=False)
-    embed.add_field(name="🚀 YOLO Badge", value="Unlocked (First PR merged without review)", inline=False)
+    if pr_count >= 1024:
+        pull_shark_tier = "Gold (1024+ PRs) 🌟"
+    elif pr_count >= 128:
+        pull_shark_tier = "Silver (128+ PRs) ⭐"
+    elif pr_count >= 16:
+        pull_shark_tier = "Bronze (16+ PRs) ✨"
+    elif pr_count >= 2:
+        pull_shark_tier = "Iron (2+ PRs) 🦈"
+
+    embed.add_field(
+        name="🦈 Pull Shark Progress",
+        value=f"{pr_count} PRs merged. Current tier: **{pull_shark_tier}**",
+        inline=False,
+    )
+    embed.add_field(
+        name="🚀 YOLO Badge",
+        value="Unlocked (First PR merged without review)",
+        inline=False,
+    )
     embed.set_footer(text="Ground Zero Achievement tracker bot")
-    
+
     await interaction.followup.send(embed=embed)
 
-@client.tree.command(name="links", description="Show Ground Zero Community invite links")
+
+@client.tree.command(
+    name="links", description="Show Ground Zero Community invite links"
+)
 async def links(interaction: discord.Interaction):
     embed = discord.Embed(
         title="🌐 Ground Zero Community Hub",
         description="Connect with us across all platforms!",
-        color=discord.Color.green()
+        color=discord.Color.green(),
     )
-    embed.add_field(name="💬 Discord Server", value="[Join Discord](https://discord.gg/4H2v6UwjmY)", inline=True)
-    embed.add_field(name="👥 Facebook Group", value="[Join Facebook Group](https://www.facebook.com/groups/groundzerocommunity/)", inline=True)
-    embed.add_field(name="📢 Facebook Page", value="[View Facebook Page](https://www.facebook.com/GroundZeroDigital/)", inline=True)
-    embed.add_field(name="💬 Messenger GC", value="[Invitation Link](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)", inline=False)
-    
+    embed.add_field(
+        name="💬 Discord Server",
+        value="[Join Discord](https://discord.gg/4H2v6UwjmY)",
+        inline=True,
+    )
+    embed.add_field(
+        name="👥 Facebook Group",
+        value="[Join Facebook Group](https://www.facebook.com/groups/groundzerocommunity/)",
+        inline=True,
+    )
+    embed.add_field(
+        name="📢 Facebook Page",
+        value="[View Facebook Page](https://www.facebook.com/GroundZeroDigital/)",
+        inline=True,
+    )
+    embed.add_field(
+        name="💬 Messenger GC",
+        value="[Invitation Link](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)",
+        inline=False,
+    )
+
     await interaction.response.send_message(embed=embed)
+
 
 def main():
     if not TOKEN:
         print("Error: DISCORD_BOT_TOKEN environment variable not set.")
         print("Please check the script headers for setup instructions.")
         sys.exit(1)
-        
+
     client.run(TOKEN)
+
 
 if __name__ == "__main__":
     main()
