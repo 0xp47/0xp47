@@ -7,13 +7,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        Have an idea to make this repository better? We would love to hear it!
+        Have an idea to make this repository better? I would love to hear it!
   - type: textarea
     id: feature-description
     attributes:
       label: "Feature Description"
       description: "A clear and concise description of what you want to happen."
-      placeholder: "I suggest we add a workflow that..."
+      placeholder: "I suggest adding a workflow that..."
     validations:
       required: true
   - type: textarea

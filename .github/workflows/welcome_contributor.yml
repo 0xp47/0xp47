@@ -37,7 +37,7 @@ jobs:
               
               Welcome to **@0xp47's repository**! Thank you for opening an issue. 
               
-              Whether you are here to report a bug, request a feature, or ask a question, we're glad to have you. We will review this shortly. 🚀`;
+              Whether you are here to report a bug, request a feature, or ask a question, I'm glad to have you. I will review this shortly. 🚀`;
               
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -66,9 +66,9 @@ jobs:
             if (userPrs.length <= 1) {
               const welcomeMessage = `🎉 Welcome @${creator} to **@0xp47's repository**!
               
-              Thank you so much for your pull request! Contributing code or updates is the best way to grow together as developers. We really appreciate your effort.
+              Thank you so much for your pull request! Contributing code or updates is the best way to grow together as developers. I really appreciate your effort.
               
-              We will review your changes shortly. Happy coding! 💻✨`;
+              I will review your changes shortly. Happy coding! 💻✨`;
               
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
