@@ -39,7 +39,7 @@ jobs:
         run: black .github/scripts/*.py
 
       - name: Format Markdown and YAML
-        run: prettier --write "README.md" "achievements/*.md" ".github/workflows/*.yml"
+        run: prettier --write "README.md" "achievements/*.md"
 
       - name: Commit and push formatted files
         run: |
