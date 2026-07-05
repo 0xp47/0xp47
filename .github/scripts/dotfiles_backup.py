@@ -5,12 +5,23 @@ import shutil
 import platform
 import subprocess
 
+import io
+if sys.platform.startswith('win'):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
 DOTFILES_DIR = "dotfiles"
 
 
 def run_cmd(args):
     try:
-        res = subprocess.run(args, capture_output=True, text=True, timeout=10)
+        res = subprocess.run(
+            args,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            shell=sys.platform.startswith("win"),
+        )
         if res.returncode == 0:
             return res.stdout.strip()
     except Exception:
