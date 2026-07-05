@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+import subprocess
+import time
+import sys
+import os
+import random
+
+# File to commit dummy changes to
+PROGRESS_FILE = "achievements/pull-shark-progress.md"
+
+def run_cmd(args):
+    result = subprocess.run(args, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"Error running command: {' '.join(args)}")
+        print(f"Stdout: {result.stdout}")
+        print(f"Stderr: {result.stderr}")
+        return False, result.stdout, result.stderr
+    return True, result.stdout, result.stderr
+
+def check_requirements():
+    # Verify git is configured
+    run_cmd(["git", "config", "--global", "user.name", "github-actions[bot]"])
+    run_cmd(["git", "config", "--global", "user.email", "github-actions[bot]@users.noreply.github.com"])
+    
+    # Check if gh CLI is installed
+    success, _, _ = run_cmd(["gh", "--version"])
+    if not success:
+        print("Error: GitHub CLI ('gh') is not installed or not in PATH.")
+        sys.exit(1)
+
+def farm_one_pr(pr_number):
+    branch_name = f"farm-pr-{pr_number}-{random.randint(1000, 9999)}"
+    print(f"\n--- Starting PR #{pr_number} on branch '{branch_name}' ---")
+    
+    # 1. Checkout main and pull latest changes
+    success, _, _ = run_cmd(["git", "checkout", "main"])
+    if not success: return False
+    success, _, _ = run_cmd(["git", "pull", "origin", "main"])
+    if not success: return False
+    
+    # 2. Create and checkout new branch
+    success, _, _ = run_cmd(["git", "checkout", "-b", branch_name])
+    if not success: return False
+    
+    # 3. Append progress to achievements file
+    timestamp = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    entry = f"pr-farm-{pr_number} {timestamp}\n"
+    os.makedirs(os.path.dirname(PROGRESS_FILE), exist_ok=True)
+    with open(PROGRESS_FILE, "a") as f:
+        f.write(entry)
+        
+    # 4. Commit change
+    success, _, _ = run_cmd(["git", "add", PROGRESS_FILE])
+    if not success: return False
+    success, _, _ = run_cmd(["git", "commit", "-m", f"achievement(farm): add pr-{pr_number} progress entry [skip ci]"])
+    if not success: return False
+    
+    # 5. Push branch
+    success, _, _ = run_cmd(["git", "push", "origin", branch_name])
+    if not success: return False
+    
+    # 6. Create PR using GitHub CLI
+    # Use -B main to ensure it targets main branch
+    success, stdout, _ = run_cmd([
+        "gh", "pr", "create",
+        "--title", f"chore(farm): merge pr-{pr_number} progress tracking",
+        "--body", f"Automated progress commit for pull request #{pr_number}.",
+        "--head", branch_name,
+        "--base", "main"
+    ])
+    if not success: return False
+    
+    # Extract PR URL from output
+    pr_url = stdout.strip()
+    print(f"Created PR: {pr_url}")
+    
+    # Sleep briefly to let GitHub process the PR
+    time.sleep(2)
+    
+    # 7. Merge PR using GitHub CLI
+    success, _, _ = run_cmd(["gh", "pr", "merge", pr_url, "--merge", "--delete-branch"])
+    if not success:
+        print("Trying fallback admin merge...")
+        success, _, _ = run_cmd(["gh", "pr", "merge", pr_url, "--admin", "--merge", "--delete-branch"])
+        
+    if success:
+        print(f"Successfully merged PR #{pr_number}!")
+        return True
+    else:
+        print(f"Failed to merge PR #{pr_number}.")
+        return False
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: python farm_achievements.py <count>")
+        sys.exit(1)
+        
+    try:
+        count = int(sys.argv[1])
+    except ValueError:
+        print("Error: Count must be an integer.")
+        sys.exit(1)
+        
+    check_requirements()
+    
+    success_count = 0
+    for i in range(1, count + 1):
+        if farm_one_pr(i):
+            success_count += 1
+            # Sleep between PRs to avoid triggering GitHub abuse limits
+            time.sleep(3)
+        else:
+            print(f"Aborting farming loop due to failure at step {i}.")
+            break
+            
+    print(f"\nFarming complete. Successfully merged {success_count}/{count} pull requests.")
+
+if __name__ == "__main__":
+    main()

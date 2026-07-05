@@ -1,0 +1,30 @@
+name: Farm GitHub Achievements
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_count:
+        description: 'Number of PRs to farm (e.g. 5, 10, 50)'
+        required: true
+        default: '5'
+
+jobs:
+  farm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Run Farming Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python .github/scripts/farm_achievements.py ${{ github.event.inputs.pr_count }}

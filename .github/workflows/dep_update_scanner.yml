@@ -1,0 +1,26 @@
+name: Dependency Update Scanner
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'   # Run every Monday at midnight (UTC)
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  scan-deps:
+    runs-on: ubuntu-latest
+    name: Check Outdated Packages
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Dependency Scan
+        run: python .github/scripts/dep_update_scanner.py

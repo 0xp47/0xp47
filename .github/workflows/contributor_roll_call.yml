@@ -1,0 +1,29 @@
+name: Weekly Contributor Roll Call
+
+on:
+  schedule:
+    - cron: '0 12 * * 0'   # Run every Sunday at noon (UTC)
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  roll-call:
+    runs-on: ubuntu-latest
+    name: Contributor Roll Call
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Compile and Send Roll Call
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python .github/scripts/contributor_roll_call.py

@@ -1,0 +1,94 @@
+name: Contributor Welcome Bot
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull_requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    name: Greet Contributor
+
+    steps:
+      - name: Greet New Issue Creator
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const creator = context.payload.issue.user.login;
+            
+            // Check if this is the user's first issue in this repo
+            const response = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              creator: creator,
+              state: 'all'
+            });
+            
+            // If the only issue is the current one, it's their first
+            if (response.data.length <= 1) {
+              const welcomeMessage = `👋 Hello @${creator}!
+              
+              Welcome to the **Ground Zero Community**! Thank you for opening an issue in this repository. 
+              
+              Whether you are here to report a bug, request a feature, or ask a question, we're glad to have you. A member of our community or project team will review this shortly.
+              
+              ### 🌐 Connect with Ground Zero:
+              * **Discord Server**: [Join our Discord](https://discord.gg/4H2v6UwjmY)
+              * **Facebook Group**: [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
+              * **Facebook Page**: [Ground Zero Digital](https://www.facebook.com/GroundZeroDigital/)
+              * **Messenger Invitation Link**: [Messenger Group Chat](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
+              
+              Looking forward to collaborating with you! 🚀`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: welcomeMessage
+              });
+            }
+
+      - name: Greet New PR Contributor
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const creator = context.payload.pull_request.user.login;
+            
+            // Check if this is the user's first PR
+            const response = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all'
+            });
+            
+            const userPrs = response.data.filter(pr => pr.user.login === creator);
+            
+            if (userPrs.length <= 1) {
+              const welcomeMessage = `🎉 Welcome @${creator} to the **Ground Zero Community**!
+              
+              Thank you so much for your pull request! Contributing code or updates is the best way to grow together as developers. We really appreciate your effort.
+              
+              We will review your changes shortly. While you wait, make sure to check out our main community hubs to discuss your work and meet other builders:
+              
+              ### 🌐 Join the conversation:
+              * **Discord Server**: [Join our Discord](https://discord.gg/4H2v6UwjmY)
+              * **Facebook Group**: [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
+              * **Messenger Group Chat**: [Messenger Invitation](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
+              
+              Thanks again, and happy coding! 💻✨`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: welcomeMessage
+              });
+            }

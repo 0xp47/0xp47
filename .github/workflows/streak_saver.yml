@@ -1,0 +1,31 @@
+name: Streak Saver Protector
+
+on:
+  schedule:
+    - cron: '0 14 * * *'   # Run daily at 14:00 UTC (22:00 PHT / Philippine time)
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  check-streak:
+    runs-on: ubuntu-latest
+    name: Check Daily Contribution
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Check Contribution Status
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python .github/scripts/streak_saver.py
