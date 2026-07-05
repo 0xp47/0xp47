@@ -21,20 +21,20 @@ except ImportError:
 
 # ── Config ────────────────────────────────────────────────────────────────────
 GITHUB_USERNAME = "0xp47"
-README_PATH     = "README.md"
-BAR_WIDTH       = 10
-START_YEAR      = 2020
-MARKER_START    = "<!-- STATS:START -->"
-MARKER_END      = "<!-- STATS:END -->"
-MAIN_COL_WIDTH  = 74
-PET_LINE_WIDTH  = 8
+README_PATH = "README.md"
+BAR_WIDTH = 10
+START_YEAR = 2020
+MARKER_START = "<!-- STATS:START -->"
+MARKER_END = "<!-- STATS:END -->"
+MAIN_COL_WIDTH = 74
+PET_LINE_WIDTH = 8
 
 PET_ARTS = [
     ["/\\_/\\", "( o.o )", "> ^ <"],
     ["(\\_/)", "(o.o)", "/|_|\\"],
     ["^__^", "(oo)", "/(__)\\"],
     ["/\\_/\\", "/ o o \\", "\\_^_/"],
-    [",_,", "(o,o)", "(\"_\")"],
+    [",_,", "(o,o)", '("_")'],
 ]
 
 TECH_QUOTES = [
@@ -108,7 +108,12 @@ MACHINE_RIGHT_NOTES = [
 LOCAL_TZ = timezone(timedelta(hours=8))
 
 PROFILE_GITHUB_TOKEN = os.environ.get("PROFILE_GITHUB_TOKEN", "").strip()
-GITHUB_TOKEN = PROFILE_GITHUB_TOKEN or os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
+GITHUB_TOKEN = (
+    PROFILE_GITHUB_TOKEN
+    or os.environ.get("GITHUB_TOKEN")
+    or os.environ.get("GH_TOKEN")
+    or ""
+)
 WAKATIME_API_KEY = os.environ.get("WAKATIME_API_KEY") or ""
 WAKATIME_BASE_URL = "https://wakatime.com/api/v1/users/current"
 HEADERS = {
@@ -118,15 +123,18 @@ HEADERS = {
 if GITHUB_TOKEN:
     HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
+
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def progress_bar(pct: float) -> str:
     filled = max(0, min(BAR_WIDTH, round(pct / 100 * BAR_WIDTH)))
     return "▰" * filled + "▱" * (BAR_WIDTH - filled)
 
+
 BAR_LINE_PATTERN = re.compile(
     rf"^\s*(?P<label>.+?)\s+(?P<bar>[▰▱]{{{BAR_WIDTH}}})\s+"
     r"(?P<pct><?\s*\d+(?:\.\d+)?)\s*%(?:\s+.*)?$"
 )
+
 
 def _extract_section_percentages(block: str, start_title: str, end_title: str) -> list:
     values = []
@@ -145,6 +153,7 @@ def _extract_section_percentages(block: str, start_title: str, end_title: str) -
         if match:
             values.append(float(match.group("pct")))
     return values
+
 
 def validate_stats_block(block: str) -> None:
     errors = []
@@ -187,25 +196,34 @@ def validate_stats_block(block: str) -> None:
     )
 
     if len(time_values) != 4:
-        errors.append(f"time-of-day section should have 4 rows, found {len(time_values)}")
+        errors.append(
+            f"time-of-day section should have 4 rows, found {len(time_values)}"
+        )
     if len(day_values) != 7:
-        errors.append(f"day-of-week section should have 7 rows, found {len(day_values)}")
+        errors.append(
+            f"day-of-week section should have 7 rows, found {len(day_values)}"
+        )
 
     if time_values:
         time_sum = sum(time_values)
         has_time_activity = any(v > 0.0 for v in time_values)
         if has_time_activity and abs(time_sum - 100.0) > 0.25:
-            errors.append(f"time-of-day percentages should sum to ~100, got {time_sum:.2f}")
+            errors.append(
+                f"time-of-day percentages should sum to ~100, got {time_sum:.2f}"
+            )
     if day_values:
         day_sum = sum(day_values)
         has_day_activity = any(v > 0.0 for v in day_values)
         if has_day_activity and abs(day_sum - 100.0) > 0.25:
-            errors.append(f"day-of-week percentages should sum to ~100, got {day_sum:.2f}")
+            errors.append(
+                f"day-of-week percentages should sum to ~100, got {day_sum:.2f}"
+            )
 
     if errors:
         raise ValueError("Stats validation failed:\n  - " + "\n  - ".join(errors))
 
     print(f"Stats validation passed ({checked_rows} bar rows checked).")
+
 
 def _to_float(value: any, default: float = 0.0) -> float:
     try:
@@ -213,10 +231,12 @@ def _to_float(value: any, default: float = 0.0) -> float:
     except (TypeError, ValueError):
         return default
 
+
 def format_hours(seconds: float) -> str:
     if seconds <= 0:
         return "n/a"
     return f"{seconds / 3600:5.2f} h"
+
 
 def format_category_time(seconds: float) -> str:
     if seconds <= 0:
@@ -229,6 +249,7 @@ def format_category_time(seconds: float) -> str:
         return "1m"
     return f"{minutes}m"
 
+
 def with_right(main_text: str, side_text: str = "") -> str:
     side = (side_text or "").rstrip()
     if not side.strip():
@@ -237,16 +258,19 @@ def with_right(main_text: str, side_text: str = "") -> str:
         side = side[:27].rstrip() + "..."
     return f"{main_text:<{MAIN_COL_WIDTH}} | {side}"
 
+
 def rotation_seed(now_text: str) -> int:
     run_id = os.environ.get("GITHUB_RUN_ID") or "local"
     run_attempt = os.environ.get("GITHUB_RUN_ATTEMPT") or "1"
     source = f"{run_id}:{run_attempt}:{now_text}"
     return sum((i + 1) * ord(ch) for i, ch in enumerate(source))
 
+
 def rotate_pick(items: list, seed: int, count: int) -> list:
     if not items or count <= 0:
         return []
     return [items[(seed + i) % len(items)] for i in range(count)]
+
 
 def align_pet_rows(rows: list) -> list:
     aligned = []
@@ -255,6 +279,7 @@ def align_pet_rows(rows: list) -> list:
         pad = max(0, (PET_LINE_WIDTH - len(cell)) // 2)
         aligned.append(" " * pad + cell)
     return aligned
+
 
 def language_side_lines(seed: int, count: int) -> list:
     if count <= 0:
@@ -275,11 +300,14 @@ def language_side_lines(seed: int, count: int) -> list:
 
     return lines[:count]
 
+
 def wakatime_get(resource: str, params: dict | None = None, retries: int = 3) -> any:
     url = f"{WAKATIME_BASE_URL}/{resource}"
     for attempt in range(retries):
         try:
-            r = requests.get(url, auth=(WAKATIME_API_KEY, ""), params=params, timeout=20)
+            r = requests.get(
+                url, auth=(WAKATIME_API_KEY, ""), params=params, timeout=20
+            )
             if r.status_code == 429:
                 wait = int(r.headers.get("Retry-After", 60))
                 print(f"  WakaTime rate limited. Waiting {wait}s...")
@@ -297,7 +325,8 @@ def wakatime_get(resource: str, params: dict | None = None, retries: int = 3) ->
             if attempt == retries - 1:
                 print(f"  Failed to fetch WakaTime {resource}: {e}")
                 return None
-            time.sleep(2 ** attempt)
+            time.sleep(2**attempt)
+
 
 def fetch_wakatime_stats(range_str: str = "all_time", retries: int = 3) -> any:
     if not WAKATIME_API_KEY:
@@ -310,18 +339,25 @@ def fetch_wakatime_stats(range_str: str = "all_time", retries: int = 3) -> any:
         if isinstance(data, dict):
             last_data = data
             if data.get("is_up_to_date") is False:
-                print(f"  WakaTime stats ({range_str}) are not up to date (attempt {attempt + 1}/{retries}). Waiting 5s...")
+                print(
+                    f"  WakaTime stats ({range_str}) are not up to date (attempt {attempt + 1}/{retries}). Waiting 5s..."
+                )
                 time.sleep(5)
                 continue
             return data
         break
 
     if last_data is not None:
-        print(f"  WakaTime stats ({range_str}) did not finish updating, using last fetched stats.")
+        print(
+            f"  WakaTime stats ({range_str}) did not finish updating, using last fetched stats."
+        )
         return last_data
 
-    print(f"  Unexpected WakaTime stats shape for ({range_str}); continuing without stats.")
+    print(
+        f"  Unexpected WakaTime stats shape for ({range_str}); continuing without stats."
+    )
     return None
+
 
 def fetch_wakatime_all_time(retries: int = 3) -> any:
     if not WAKATIME_API_KEY:
@@ -331,6 +367,7 @@ def fetch_wakatime_all_time(retries: int = 3) -> any:
         return data
     return None
 
+
 def fetch_wakatime_summaries(days: int = 365, retries: int = 3) -> list:
     if days > 365:
         days = 365
@@ -339,10 +376,13 @@ def fetch_wakatime_summaries(days: int = 365, retries: int = 3) -> list:
     today_local = datetime.now(LOCAL_TZ).date()
     start_date = (today_local - timedelta(days=days - 1)).isoformat()
     end_date = today_local.isoformat()
-    data = wakatime_get("summaries", params={"start": start_date, "end": end_date}, retries=retries)
+    data = wakatime_get(
+        "summaries", params={"start": start_date, "end": end_date}, retries=retries
+    )
     if isinstance(data, list):
         return data
     return []
+
 
 def fetch_wakatime_durations(days: int = 7, retries: int = 3) -> list:
     if days > 14:
@@ -354,10 +394,13 @@ def fetch_wakatime_durations(days: int = 7, retries: int = 3) -> list:
     today_local = datetime.now(LOCAL_TZ).date()
     for offset in range(days):
         target_date = (today_local - timedelta(days=offset)).isoformat()
-        day_data = wakatime_get("durations", params={"date": target_date}, retries=retries)
+        day_data = wakatime_get(
+            "durations", params={"date": target_date}, retries=retries
+        )
         if isinstance(day_data, list):
             durations.extend(day_data)
     return durations
+
 
 def extract_wakatime_percentages(
     wakatime_stats: any,
@@ -369,7 +412,7 @@ def extract_wakatime_percentages(
     if not isinstance(wakatime_stats, dict):
         return rows
 
-    for item in (wakatime_stats.get(key) or []):
+    for item in wakatime_stats.get(key) or []:
         if not isinstance(item, dict):
             continue
         name = (item.get("name") or "Unknown").strip() or "Unknown"
@@ -381,6 +424,7 @@ def extract_wakatime_percentages(
 
     rows.sort(key=lambda x: -x[1])
     return rows[:limit] if limit > 0 else rows
+
 
 def wakatime_activity_stats(wakatime_durations: list) -> tuple:
     hour_map = {"Morning": 0.0, "Daytime": 0.0, "Evening": 0.0, "Night": 0.0}
@@ -403,16 +447,16 @@ def wakatime_activity_stats(wakatime_durations: list) -> tuple:
 
         h = local_dt.hour
         bucket = (
-            "Morning" if 6 <= h < 12 else
-            "Daytime" if 12 <= h < 18 else
-            "Evening" if 18 <= h < 24 else
-            "Night"
+            "Morning"
+            if 6 <= h < 12
+            else "Daytime" if 12 <= h < 18 else "Evening" if 18 <= h < 24 else "Night"
         )
         hour_map[bucket] += duration_sec
         day_map[local_dt.strftime("%A")] += duration_sec
         total_seconds += duration_sec
 
     return hour_map, dict(day_map), total_seconds
+
 
 def wakatime_day_stats_from_summaries(summaries: list) -> dict:
     day_map: dict = defaultdict(float)
@@ -443,6 +487,7 @@ def wakatime_day_stats_from_summaries(summaries: list) -> dict:
 
     return dict(day_map)
 
+
 def paginate(url: str) -> list:
     results, next_url = [], url
     while next_url:
@@ -455,6 +500,7 @@ def paginate(url: str) -> list:
             if 'rel="next"' in part:
                 next_url = part.split(";")[0].strip().strip("<>")
     return results
+
 
 # ── Data fetching ─────────────────────────────────────────────────────────────
 def fetch_repos() -> list:
@@ -474,25 +520,33 @@ def fetch_repos() -> list:
         "?per_page=100&type=owner&sort=pushed"
     )
 
+
 # ── Block generator ───────────────────────────────────────────────────────────
-def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, wakatime_durations: list, wakatime_summaries: list, wakatime_all_time: any = None) -> str:
-    own   = [r for r in repos if not r.get("fork")]
+def build_stats_block(
+    repos: list,
+    wakatime_stats: any,
+    wakatime_stats_7d: any,
+    wakatime_durations: list,
+    wakatime_summaries: list,
+    wakatime_all_time: any = None,
+) -> str:
+    own = [r for r in repos if not r.get("fork")]
     public_count = sum(1 for r in own if not r.get("private"))
     private_count = sum(1 for r in own if r.get("private"))
     stars = sum(r.get("stargazers_count", 0) for r in own)
-    year  = datetime.now(timezone.utc).year
-    now   = datetime.now(LOCAL_TZ).strftime("%Y-%m-%d %H:%M:%S PHT")
-    SEP   = "━" * 58
-    seed  = rotation_seed(now)
+    year = datetime.now(timezone.utc).year
+    now = datetime.now(LOCAL_TZ).strftime("%Y-%m-%d %H:%M:%S PHT")
+    SEP = "━" * 58
+    seed = rotation_seed(now)
 
     if private_count > 0:
-        repo_visibility = f"{len(own)} repos ({public_count} public, {private_count} private)"
+        repo_visibility = (
+            f"{len(own)} repos ({public_count} public, {private_count} private)"
+        )
     else:
         repo_visibility = f"{public_count}+ public repos"
 
-    hour_map, _, duration_total = wakatime_activity_stats(
-        wakatime_durations
-    )
+    hour_map, _, duration_total = wakatime_activity_stats(wakatime_durations)
 
     wt_languages = extract_wakatime_percentages(
         wakatime_stats,
@@ -600,7 +654,11 @@ def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, 
             row = f" {lang_name:<17} {progress_bar(lang_pct)}   {lang_pct:5.2f} %   | {format_hours(lang_seconds):>7}"
             L.append(with_right(row, lang_right[idx]))
     else:
-        L.append(with_right(" WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."))
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
     L.append("")
     L.append(SEP)
     L.append("")
@@ -618,7 +676,11 @@ def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, 
             row = f" {proj_name:<17} {progress_bar(proj_pct)}   {pct_str:>8}   | {time_str:>7}"
             L.append(with_right(row, proj_right[idx]))
     else:
-        L.append(with_right(" WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."))
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
     L.append("")
     L.append(SEP)
     L.append("")
@@ -627,10 +689,19 @@ def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, 
     L.append(" I Code Most During")
     L.append("")
     time_right = rotate_pick(TIME_RIGHT_NOTES, seed + 11, 4)
-    for slot, rng in [("Morning", "06-12"), ("Daytime", "12-18"), ("Evening", "18-24"), ("Night", "00-06")]:
+    for slot, rng in [
+        ("Morning", "06-12"),
+        ("Daytime", "12-18"),
+        ("Evening", "18-24"),
+        ("Night", "00-06"),
+    ]:
         seconds_14d = hour_map.get(slot, 0.0)
         pct = seconds_14d / duration_total * 100 if duration_total else 0
-        seconds = all_time_total_seconds * (pct / 100.0) if all_time_total_seconds > 0 else seconds_14d
+        seconds = (
+            all_time_total_seconds * (pct / 100.0)
+            if all_time_total_seconds > 0
+            else seconds_14d
+        )
         row = f" {slot:<10} ({rng})   {progress_bar(pct)}   {pct:5.2f} %   | {format_hours(seconds):>7}"
         L.append(with_right(row, time_right.pop(0)))
 
@@ -639,7 +710,15 @@ def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, 
     L.append("")
     day_total = sum(day_map.values())
     day_right = rotate_pick(DAY_RIGHT_NOTES, seed + 29, 7)
-    for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]:
+    for day in [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]:
         seconds = day_map.get(day, 0.0)
         pct = seconds / day_total * 100 if day_total else 0
         row = f" {day:<10} {progress_bar(pct)}   {pct:5.2f} %   | {format_hours(seconds):>7}"
@@ -660,7 +739,11 @@ def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, 
             row = f" {edit_name:<17} {progress_bar(edit_pct)}   {pct_str:>8}   | {format_hours(edit_seconds):>7}"
             L.append(with_right(row, edit_right[idx]))
     else:
-        L.append(with_right(" WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."))
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
     L.append("")
 
     # Operating Systems (WakaTime)
@@ -675,7 +758,11 @@ def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, 
             row = f" {os_name:<17} {progress_bar(os_pct)}   {pct_str:>8}   | {format_hours(os_seconds):>7}"
             L.append(with_right(row, os_right[idx]))
     else:
-        L.append(with_right(" WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."))
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
     L.append("")
 
     # Machines & Devices (WakaTime)
@@ -690,25 +777,26 @@ def build_stats_block(repos: list, wakatime_stats: any, wakatime_stats_7d: any, 
             row = f" {mach_name:<17} {progress_bar(mach_pct)}   {pct_str:>8}   | {format_hours(mach_seconds):>7}"
             L.append(with_right(row, mach_right[idx]))
     else:
-        L.append(with_right(" WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."))
+        L.append(
+            with_right(
+                " WakaTime data unavailable (set WAKATIME_API_KEY).", "Pet is sleeping."
+            )
+        )
     L.append("")
     L.append(SEP)
-    L.append(f" Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: {now}")
+    L.append(
+        f" Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: {now}"
+    )
 
     return "\n".join(L)
+
 
 # ── README patcher ────────────────────────────────────────────────────────────
 def patch_readme(block: str) -> bool:
     with open(README_PATH, "r", encoding="utf-8") as f:
         original = f.read()
 
-    replacement = (
-        f"{MARKER_START}\n"
-        f"```text\n"
-        f"{block}\n"
-        f"```\n"
-        f"{MARKER_END}"
-    )
+    replacement = f"{MARKER_START}\n" f"```text\n" f"{block}\n" f"```\n" f"{MARKER_END}"
     new_content = re.sub(
         rf"{re.escape(MARKER_START)}.*?{re.escape(MARKER_END)}",
         replacement,
@@ -724,11 +812,12 @@ def patch_readme(block: str) -> bool:
     print("README.md updated.")
     return True
 
+
 # ── Entry point ───────────────────────────────────────────────────────────────
 def main():
     print(f"Fetching repos for {GITHUB_USERNAME}...")
     repos = fetch_repos()
-    own   = [r for r in repos if not r.get("fork")]
+    own = [r for r in repos if not r.get("fork")]
     public_count = sum(1 for r in own if not r.get("private"))
     private_count = sum(1 for r in own if r.get("private"))
     print(
@@ -755,13 +844,21 @@ def main():
     print(f"  {len(wakatime_durations)} duration records")
 
     print("Building stats block...")
-    block = build_stats_block(repos, wakatime_stats, wakatime_stats_7d, wakatime_durations, wakatime_summaries, wakatime_all_time)
+    block = build_stats_block(
+        repos,
+        wakatime_stats,
+        wakatime_stats_7d,
+        wakatime_durations,
+        wakatime_summaries,
+        wakatime_all_time,
+    )
 
     print("Validating stats block...")
     validate_stats_block(block)
 
     print("Patching README.md...")
     patch_readme(block)
+
 
 if __name__ == "__main__":
     main()

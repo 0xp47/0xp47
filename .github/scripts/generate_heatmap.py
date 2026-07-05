@@ -8,6 +8,7 @@ import base64
 
 SVG_PATH = "images/coding_stats.svg"
 
+
 def fetch_wakatime_stats(api_key):
     url = "https://wakatime.com/api/v1/users/current/stats/last_7_days"
     headers = {"Authorization": f"Basic {api_key}"}
@@ -19,6 +20,7 @@ def fetch_wakatime_stats(api_key):
         pass
     return None
 
+
 def generate_mock_data():
     return {
         "human_readable_total": "28 hrs 45 mins",
@@ -28,9 +30,10 @@ def generate_mock_data():
             {"name": "JavaScript", "percent": 24.3},
             {"name": "TypeScript", "percent": 18.2},
             {"name": "HTML/CSS", "percent": 10.0},
-            {"name": "Markdown", "percent": 5.0}
-        ]
+            {"name": "Markdown", "percent": 5.0},
+        ],
     }
+
 
 def get_color(lang_name):
     # Modern neon palette for coding languages
@@ -48,21 +51,22 @@ def get_color(lang_name):
         "ruby": "#701516",
         "rust": "#dea584",
         "c++": "#f34b7d",
-        "shell": "#89e051"
+        "shell": "#89e051",
     }
     return colors.get(lang_name.lower(), "#8e2de2")
+
 
 def build_svg_card(data):
     total_time = data.get("human_readable_total", "0 hrs")
     daily_avg = data.get("human_readable_daily_average", "0 mins")
-    languages = data.get("languages", [])[:5] # Limit to top 5
-    
+    languages = data.get("languages", [])[:5]  # Limit to top 5
+
     # SVG Dimensions
     width = 450
     height = 280
-    
+
     # Start building SVG
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" fill="none">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" fill="none">
     <style>
         .card {{
             fill: #0d1117;
@@ -116,43 +120,46 @@ def build_svg_card(data):
     
     <!-- Separator -->
     <line x1="25" y1="68" x2="{width - 25}" y2="68" stroke="#21262d" stroke-width="1" />
-    '''
-    
+    """
+
     # Draw language stats
     y_start = 90
     y_gap = 35
     bar_max_width = 250
-    
+
     for i, lang in enumerate(languages):
         y = y_start + (i * y_gap)
         name = lang.get("name", "Unknown")
         pct = lang.get("percent", 0.0)
         color = get_color(name)
         bar_fill_width = int((pct / 100.0) * bar_max_width)
-        
-        svg += f'''
+
+        svg += f"""
     <!-- {name} -->
     <text x="25" y="{y + 12}" class="label">{name}</text>
     <rect x="130" y="{y}" width="{bar_max_width}" height="12" class="bar-bg" />
     <rect x="130" y="{y}" width="{bar_fill_width}" height="12" fill="{color}" class="bar-fill" />
     <text x="{130 + bar_max_width + 12}" y="{y + 11}" class="value">{pct:.1f}%</text>
-        '''
-        
+        """
+
     # Footer
-    svg += f'''
+    svg += f"""
     <!-- Separator -->
     <line x1="25" y1="245" x2="{width - 25}" y2="245" stroke="#21262d" stroke-width="1" />
     <text x="25" y="262" class="subtitle">Daily Average: {daily_avg}</text>
 </svg>
-'''
+"""
     return svg
+
 
 def main():
     api_key_raw = os.environ.get("WAKATIME_API_KEY")
     os.makedirs(os.path.dirname(SVG_PATH), exist_ok=True)
-    
+
     if not api_key_raw:
-        print("Warning: WAKATIME_API_KEY not found. Generating SVG card with mock data...")
+        print(
+            "Warning: WAKATIME_API_KEY not found. Generating SVG card with mock data..."
+        )
         data = generate_mock_data()
     else:
         if not api_key_raw.startswith("waka_"):
@@ -162,7 +169,7 @@ def main():
                 api_key = api_key_raw
         else:
             api_key = base64.b64encode(api_key_raw.encode()).decode()
-            
+
         print("Fetching WakaTime statistics for SVG...")
         waka_data = fetch_wakatime_stats(api_key)
         if waka_data:
@@ -170,11 +177,12 @@ def main():
         else:
             print("Failed to fetch, falling back to mock data for SVG...")
             data = generate_mock_data()
-            
+
     svg_content = build_svg_card(data)
     with open(SVG_PATH, "w", encoding="utf-8") as f:
         f.write(svg_content)
     print(f"Stats SVG generated successfully at {SVG_PATH}")
+
 
 if __name__ == "__main__":
     main()

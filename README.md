@@ -14,18 +14,18 @@
 
 ```typescript
 const developer = {
-  name:       "Jay Patrick Cano",
-  alias:      "0xp47",
-  role:       "Full-Stack Developer",
-  location:   "Philippines 🇵🇭",
-  status:     "Open to freelance, contract, and full-time opportunities",
+  name: "Jay Patrick Cano",
+  alias: "0xp47",
+  role: "Full-Stack Developer",
+  location: "Philippines 🇵🇭",
+  status: "Open to freelance, contract, and full-time opportunities",
 
   stack: {
-    languages:  ["JavaScript", "TypeScript", "Python", "PHP", "C#"],
-    frontend:   ["React", "Next.js", "Vue.js", "Tailwind CSS", "Sass"],
-    backend:    ["Node.js", "Express.js", "Laravel", "REST APIs", "GraphQL"],
-    databases:  ["MongoDB", "MySQL", "PostgreSQL", "Firebase", "Supabase"],
-    devOps:     ["Git", "Docker", "GitHub Actions", "CI/CD", "AWS · GCP · Azure"],
+    languages: ["JavaScript", "TypeScript", "Python", "PHP", "C#"],
+    frontend: ["React", "Next.js", "Vue.js", "Tailwind CSS", "Sass"],
+    backend: ["Node.js", "Express.js", "Laravel", "REST APIs", "GraphQL"],
+    databases: ["MongoDB", "MySQL", "PostgreSQL", "Firebase", "Supabase"],
+    devOps: ["Git", "Docker", "GitHub Actions", "CI/CD", "AWS · GCP · Azure"],
     automation: ["Python Scripting", "Web Scraping", "Shell & Batch Scripts"],
   },
 
@@ -38,9 +38,9 @@ const developer = {
   },
 
   links: {
-    portfolio:  "https://0xp47.vercel.app",
-    github:     "https://github.com/0xp47",
-    linktree:   "https://0xp47.github.io/linktree",
+    portfolio: "https://0xp47.vercel.app",
+    github: "https://github.com/0xp47",
+    linktree: "https://0xp47.github.io/linktree",
   },
 
   quotes: [
@@ -52,7 +52,9 @@ const developer = {
 
 export default developer;
 ```
+
 <!-- STATS:START -->
+
 ```text
 0xp47 · Dev Metrics                                                        | Quick Insights
 From: 2020 - To: 2026                                                      | Top Lang : Python (25.83%)
@@ -128,6 +130,7 @@ Stats & Proficiency
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 18:23:09 PHT
 ```
+
 <!-- STATS:END -->
 
 ## Ground Zero Community
@@ -138,26 +141,26 @@ Join **Ground Zero**, a professional community where developers, students, desig
 
 ### What our community offers:
 
-* Technical discussions and programming support
-* Web, mobile, and software engineering collaboration
-* UI/UX design and review
-* Cybersecurity analysis and best practices
-* Artificial Intelligence and machine learning exploration
-* Open-source contributions and project management
-* Shared industry news, learning resources, and documentation
-* Project showcases with constructive peer feedback
-* Networking opportunities with industry professionals and peers
-* A collaborative environment designed for continuous learning
+- Technical discussions and programming support
+- Web, mobile, and software engineering collaboration
+- UI/UX design and review
+- Cybersecurity analysis and best practices
+- Artificial Intelligence and machine learning exploration
+- Open-source contributions and project management
+- Shared industry news, learning resources, and documentation
+- Project showcases with constructive peer feedback
+- Networking opportunities with industry professionals and peers
+- A collaborative environment designed for continuous learning
 
 Connect with a network of builders and creators dedicated to exploring technology.
 
 ### Connect with us:
 
-* **Facebook Page:** [Ground Zero Digital](https://www.facebook.com/GroundZeroDigital/)
-* **Facebook Group:** [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
-* **Facebook Group Chat:** [Messenger Invitation Link](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
-* **GitHub:** [GroundZero-Community](https://github.com/GroundZeroCommunity)
-* **Discord:** [Join our Discord Server](https://discord.gg/4H2v6UwjmY)
+- **Facebook Page:** [Ground Zero Digital](https://www.facebook.com/GroundZeroDigital/)
+- **Facebook Group:** [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
+- **Facebook Group Chat:** [Messenger Invitation Link](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
+- **GitHub:** [GroundZero-Community](https://github.com/GroundZeroCommunity)
+- **Discord:** [Join our Discord Server](https://discord.gg/4H2v6UwjmY)
 
 Everyone is welcome regardless of experience level. We invite you to learn new skills, contribute to ongoing projects, expand your network, and grow alongside a dedicated community of technology leaders.
 
