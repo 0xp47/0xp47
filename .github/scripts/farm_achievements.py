@@ -77,14 +77,11 @@ def farm_one_pr(pr_number):
     success, _, _ = run_cmd(["git", "add", PROGRESS_FILE])
     if not success:
         return False
-    success, _, _ = run_cmd(
-        [
-            "git",
-            "commit",
-            "-m",
-            f"achievement(farm): add pr-{pr_number} progress entry [skip ci]",
-        ]
+    commit_msg = (
+        f"achievement(farm): add pr-{pr_number} progress entry [skip ci]\n\n"
+        f"Co-authored-by: 0xp47 <0xp47.dev@gmail.com>"
     )
+    success, _, _ = run_cmd(["git", "commit", "-m", commit_msg])
     if not success:
         return False
 
@@ -136,6 +133,38 @@ def farm_one_pr(pr_number):
         return False
 
 
+def farm_quickdraw():
+    print("\n--- Farming Quickdraw Achievement ---")
+    # 1. Create a dummy issue using GitHub CLI
+    success, stdout, _ = run_cmd(
+        [
+            "gh",
+            "issue",
+            "create",
+            "--title",
+            "chore(farm): temporary quickdraw milestone",
+            "--body",
+            "This issue is automatically created to farm the Quickdraw achievement and will be closed immediately.",
+        ]
+    )
+    if not success:
+        print("Failed to create issue for Quickdraw.")
+        return False
+
+    # Extract issue URL or number from stdout
+    issue_url = stdout.strip()
+    print(f"Created Issue: {issue_url}")
+
+    # 2. Close the issue immediately
+    success, _, _ = run_cmd(["gh", "issue", "close", issue_url])
+    if success:
+        print("Successfully closed issue immediately! Quickdraw achievement unlocked.")
+        return True
+    else:
+        print("Failed to close issue.")
+        return False
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python farm_achievements.py <count>")
@@ -162,6 +191,9 @@ def main():
     print(
         f"\nFarming complete. Successfully merged {success_count}/{count} pull requests."
     )
+
+    # Automatically run Quickdraw farming step
+    farm_quickdraw()
 
 
 if __name__ == "__main__":
