@@ -6,6 +6,8 @@ All notable changes to this repository will be documented in this file.
 
 ## 🚀 Features
 
+- **security-analytics**: integrate gitleaks scanner, automated changelog generator, multi-repo language stats card, and CodeQL security auditing (19e52e4) - by @0xp47
+
 - **readme**: add auto-updating tech stack badges detector and workflow (7b89194) - by @0xp47
 
 - add weekly WakaTime digest Discord notifications and VS Code Dev Container configurations (ebff4e5) - by @0xp47
@@ -33,6 +35,18 @@ All notable changes to this repository will be documented in this file.
 
 
 ## 🔧 Maintenance & Chores
+
+- **stats**: remove multi-repository language distribution stats card, script, and workflow (f3c2670) - by @0xp47
+
+- **readme**: auto-update dev metrics [skip ci] (942290a) - by @github-actions[bot]
+
+- **docs**: sync translated README.fil.md [skip ci] (794dbc6) - by @github-actions[bot]
+
+- **readme**: auto-update dev metrics [skip ci] (f3e69e4) - by @github-actions[bot]
+
+- **docs**: sync translated README.fil.md [skip ci] (06ae79d) - by @github-actions[bot]
+
+- auto-format code and docs [skip ci] (61c750a) - by @github-actions[bot]
 
 - **readme**: auto-update dev metrics [skip ci] (e29bcdb) - by @github-actions[bot]
 
