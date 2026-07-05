@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import os
 import sys
+import io
+if sys.platform.startswith('win'):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 import time
 import requests
 from datetime import datetime, timezone
@@ -86,6 +90,64 @@ Generated on: `{date_str}` {"(MOCK DATA)" if is_mock else ""}
         f.write(markdown)
 
     print(f"Report successfully saved to {report_path}")
+
+    # Send weekly digest to Discord if webhook URL is configured
+    webhook_url = os.environ.get("DISCORD_WEBHOOK_URL")
+    if webhook_url:
+        send_discord_digest(webhook_url, data, is_mock)
+
+
+def send_discord_digest(webhook_url, data, is_mock=False):
+    lang_fields = ""
+    for lang in data.get("languages", [])[:3]:
+        lang_fields += f"• **{lang['name']}**: {lang['percent']}% ({int(lang['total_seconds']/3600)}h {int((lang['total_seconds']%3600)/60)}m)\n"
+
+    editor_fields = ""
+    for editor in data.get("editors", [])[:2]:
+        editor_fields += f"• **{editor['name']}**: {editor['percent']}% ({int(editor['total_seconds']/3600)}h {int((editor['total_seconds']%3600)/60)}m)\n"
+
+    embed = {
+        "title": "📅 WakaTime Weekly Coding Digest",
+        "description": f"Weekly coding activity breakdown for **0xp47** {'(Mock Data)' if is_mock else ''}.",
+        "color": 3447003,
+        "fields": [
+            {
+                "name": "📊 Activity Summary",
+                "value": f"• **Total Time**: {data.get('human_readable_total', 'n/a')}\n• **Daily Average**: {data.get('human_readable_daily_average', 'n/a')}",
+                "inline": False,
+            },
+            {
+                "name": "💻 Top Languages",
+                "value": lang_fields or "n/a",
+                "inline": True,
+            },
+            {
+                "name": "✍️ Top Editors",
+                "value": editor_fields or "n/a",
+                "inline": True,
+            },
+        ],
+        "footer": {
+            "text": "0xp47 WakaTime Archiver",
+            "icon_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+        },
+    }
+
+    payload = {
+        "username": "0xp47 Metrics Manager",
+        "avatar_url": "https://github.com/0xp47.png",
+        "embeds": [embed],
+    }
+
+    headers = {"Content-Type": "application/json"}
+    try:
+        r = requests.post(webhook_url, json=payload, headers=headers, timeout=10)
+        if r.status_code in [200, 204]:
+            print("Successfully sent weekly WakaTime digest to Discord.")
+        else:
+            print(f"Failed to send weekly digest: {r.status_code} - {r.text}")
+    except Exception as e:
+        print(f"Exception sending weekly digest to Discord: {e}")
 
 
 def main():

@@ -30,6 +30,7 @@ jobs:
       - name: Generate Weekly Report
         env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python .github/scripts/archive_wakatime.py
 
       - name: Commit and push report
