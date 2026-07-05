@@ -53,18 +53,9 @@ const developer = {
 export default developer;
 ```
 
-## 🛠️ Active Tech Stack
-
-<!-- TECH_STACK:START -->
-
-**Languages**
-
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" valign="middle" height="20">
-
-**Databases & DevOps**
-
-<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white" alt="GitHub Actions" valign="middle" height="20">
-<!-- TECH_STACK:END -->
+<div align="center">
+    <img src="images/multi_repo_languages.svg" alt="0xp47's Multi-Repository Language Stats" width="850">
+</div>
 
 <!-- STATS:START -->
 ```text
@@ -83,11 +74,11 @@ Stats & Proficiency
  Python            ▰▰▰▱▱▱▱▱▱▱   25.83 %   | 231.36 h                       |  /\_/\
  JavaScript        ▰▰▱▱▱▱▱▱▱▱   23.00 %   | 206.01 h                       | ( o.o )
  TypeScript        ▰▱▱▱▱▱▱▱▱▱   11.04 %   | 98.87 h                        |  > ^ <
- PHP               ▰▱▱▱▱▱▱▱▱▱    9.15 %   | 81.96 h                        | Tests turn fear into speed.
- Markdown          ▰▱▱▱▱▱▱▱▱▱    6.30 %   | 56.39 h                        | Consistency compounds quality.
- SQL               ▱▱▱▱▱▱▱▱▱▱    4.83 %   | 43.23 h                        | Simple code survives long-t...
- JSON              ▱▱▱▱▱▱▱▱▱▱    4.22 %   | 37.76 h                        | Ship small. Learn fast.
- CSS               ▱▱▱▱▱▱▱▱▱▱    3.51 %   | 31.44 h                        | Readable code scales teams.
+ PHP               ▰▱▱▱▱▱▱▱▱▱    9.15 %   | 81.96 h                        | Automation buys thinking time.
+ Markdown          ▰▱▱▱▱▱▱▱▱▱    6.30 %   | 56.39 h                        | Ship small. Learn fast.
+ SQL               ▱▱▱▱▱▱▱▱▱▱    4.83 %   | 43.23 h                        | Readable code scales teams.
+ JSON              ▱▱▱▱▱▱▱▱▱▱    4.22 %   | 37.76 h                        | Tests turn fear into speed.
+ CSS               ▱▱▱▱▱▱▱▱▱▱    3.51 %   | 31.44 h                        | Automation buys thinking time.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -109,37 +100,37 @@ Stats & Proficiency
 
  I Am Most Productive On
 
- Monday     ▰▰▱▱▱▱▱▱▱▱   18.09 %   | 110.31 h                              | Planning day
- Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.83 %   | 78.25 h                               | Momentum day
- Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.49 %   | 76.17 h                               | Shipping day
- Thursday   ▰▰▱▱▱▱▱▱▱▱   15.56 %   | 94.88 h                               | Refactor day
- Friday     ▰▱▱▱▱▱▱▱▱▱   12.35 %   | 75.32 h                               | Review day
- Saturday   ▰▱▱▱▱▱▱▱▱▱   14.89 %   | 90.79 h                               | Automation day
- Sunday     ▰▱▱▱▱▱▱▱▱▱   13.77 %   | 83.94 h                               | Learning day
+ Monday     ▰▰▱▱▱▱▱▱▱▱   18.09 %   | 110.31 h                              | Learning day
+ Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.83 %   | 78.25 h                               | Planning day
+ Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.49 %   | 76.17 h                               | Momentum day
+ Thursday   ▰▰▱▱▱▱▱▱▱▱   15.56 %   | 94.88 h                               | Shipping day
+ Friday     ▰▱▱▱▱▱▱▱▱▱   12.35 %   | 75.32 h                               | Refactor day
+ Saturday   ▰▱▱▱▱▱▱▱▱▱   14.89 %   | 90.79 h                               | Review day
+ Sunday     ▰▱▱▱▱▱▱▱▱▱   13.77 %   | 83.94 h                               | Automation day
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Editors
- VS Code           ▰▰▰▰▰▰▰▰▰▰    95.79 %   | 857.91 h                      | Keyboard-first workflow.
- Acode             ▱▱▱▱▱▱▱▱▱▱     2.33 %   | 20.82 h                       | Fast feedback loop.
- Antigravity       ▱▱▱▱▱▱▱▱▱▱       <1 %   |  5.93 h                       | Plugins tuned for speed.
- Antigravity Desktop ▱▱▱▱▱▱▱▱▱▱       <1 %   |  4.22 h                     | Focus mode ready.
- Antigravity IDE   ▱▱▱▱▱▱▱▱▱▱       <1 %   |  3.86 h                       | Keyboard-first workflow.
+ VS Code           ▰▰▰▰▰▰▰▰▰▰    95.79 %   | 857.91 h                      | Plugins tuned for speed.
+ Acode             ▱▱▱▱▱▱▱▱▱▱     2.33 %   | 20.82 h                       | Focus mode ready.
+ Antigravity       ▱▱▱▱▱▱▱▱▱▱       <1 %   |  5.93 h                       | Keyboard-first workflow.
+ Antigravity Desktop ▱▱▱▱▱▱▱▱▱▱       <1 %   |  4.22 h                     | Fast feedback loop.
+ Antigravity IDE   ▱▱▱▱▱▱▱▱▱▱       <1 %   |  3.86 h                       | Plugins tuned for speed.
 
  Operating Systems
- Windows           ▰▰▰▰▰▰▰▰▰▱    94.49 %   | 846.27 h                      | Stable dev environment.
- WSL               ▱▱▱▱▱▱▱▱▱▱     3.14 %   | 28.15 h                       | Toolchain optimized.
- Android           ▱▱▱▱▱▱▱▱▱▱     2.33 %   | 20.82 h                       | Build-ready setup.
- Linux             ▱▱▱▱▱▱▱▱▱▱       <1 %   |  0.34 h                       | Automation friendly.
+ Windows           ▰▰▰▰▰▰▰▰▰▱    94.49 %   | 846.27 h                      | Build-ready setup.
+ WSL               ▱▱▱▱▱▱▱▱▱▱     3.14 %   | 28.15 h                       | Automation friendly.
+ Android           ▱▱▱▱▱▱▱▱▱▱     2.33 %   | 20.82 h                       | Stable dev environment.
+ Linux             ▱▱▱▱▱▱▱▱▱▱       <1 %   |  0.34 h                       | Toolchain optimized.
 
  Machines & Devices
- ROG-Zephyrus      ▰▰▰▰▱▱▱▱▱▱    42.11 %   | 377.14 h                      | Hardware optimized.
- w11               ▰▰▱▱▱▱▱▱▱▱    18.99 %   | 170.10 h                      | Ready to build.
- 0xp47             ▰▰▱▱▱▱▱▱▱▱    17.67 %   | 158.23 h                      | Workstation tuned.
- ubuntu            ▰▱▱▱▱▱▱▱▱▱    11.80 %   | 105.71 h                      | On-the-go focus.
- ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.83 %   | 25.35 h                       | Hardware optimized.
+ ROG-Zephyrus      ▰▰▰▰▱▱▱▱▱▱    42.11 %   | 377.14 h                      | Workstation tuned.
+ w11               ▰▰▱▱▱▱▱▱▱▱    18.99 %   | 170.10 h                      | On-the-go focus.
+ 0xp47             ▰▰▱▱▱▱▱▱▱▱    17.67 %   | 158.23 h                      | Hardware optimized.
+ ubuntu            ▰▱▱▱▱▱▱▱▱▱    11.80 %   | 105.71 h                      | Ready to build.
+ ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.83 %   | 25.35 h                       | Workstation tuned.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 18:46:38 PHT
+ Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 18:43:57 PHT
 ```
 <!-- STATS:END -->

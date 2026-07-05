@@ -59,17 +59,9 @@ const developer = {
 export default developer;
 ```
 
-## 🛠️ Aktibong Tech Stack
-
-<!-- TECH_STACK:START -->
-**Mga Wika**
-
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" valign="middle" height="20">
-
-**Mga Database at DevOps**
-
-<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white" alt="GitHub Actions" valign="middle" height="20">
-<!-- TECH_STACK:END -->
+<div align="center">
+    <img src="images/multi_repo_languages.svg" alt="0xp47's Multi-Repository Language Stats" width="850">
+</div>
 
 <!-- STATS:START -->
 
