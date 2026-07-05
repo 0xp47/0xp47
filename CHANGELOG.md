@@ -42,6 +42,14 @@ All notable changes to this repository will be documented in this file.
 
 ## 🔧 Maintenance & Chores
 
+- **ci**: sanitize legacy brand references in changelog and fix workflow comment pronoun (438b540) - by @0xp47
+
+- **readme**: auto-update dev metrics [skip ci] (b16a6b3) - by @github-actions[bot]
+
+- auto-format code and docs [skip ci] (0b2fe33) - by @github-actions[bot]
+
+- **changelog**: auto-update CHANGELOG.md [skip ci] (e2c5a85) - by @github-actions[bot]
+
 - auto-format code and docs [skip ci] (5eb77d6) - by @github-actions[bot]
 
 - **readme**: auto-update dev metrics [skip ci] (da0bed0) - by @github-actions[bot]
