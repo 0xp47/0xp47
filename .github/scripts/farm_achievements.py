@@ -92,7 +92,7 @@ def farm_one_pr(pr_number):
 
     # 6. Create PR using GitHub CLI
     # Use -B main to ensure it targets main branch
-    success, stdout, _ = run_cmd(
+    success, stdout, stderr = run_cmd(
         [
             "gh",
             "pr",
@@ -108,6 +108,10 @@ def farm_one_pr(pr_number):
         ]
     )
     if not success:
+        print("❌ Failed to create PR.")
+        if "not allowed" in stderr.lower() or "permission" in stderr.lower() or "403" in stderr:
+            print("\n💡 TIP: GitHub Actions is likely not allowed to create pull requests.")
+            print("To fix this, go to your repository Settings -> Actions -> General -> 'Workflow permissions' and check 'Allow GitHub Actions to create and approve pull requests'.\n")
         return False
 
     # Extract PR URL from output
@@ -118,10 +122,10 @@ def farm_one_pr(pr_number):
     time.sleep(2)
 
     # 7. Merge PR using GitHub CLI
-    success, _, _ = run_cmd(["gh", "pr", "merge", pr_url, "--merge", "--delete-branch"])
+    success, _, stderr = run_cmd(["gh", "pr", "merge", pr_url, "--merge", "--delete-branch"])
     if not success:
         print("Trying fallback admin merge...")
-        success, _, _ = run_cmd(
+        success, _, stderr = run_cmd(
             ["gh", "pr", "merge", pr_url, "--admin", "--merge", "--delete-branch"]
         )
 
@@ -130,6 +134,9 @@ def farm_one_pr(pr_number):
         return True
     else:
         print(f"Failed to merge PR #{pr_number}.")
+        if "not allowed" in stderr.lower() or "permission" in stderr.lower() or "403" in stderr:
+            print("\n💡 TIP: GitHub Actions is likely not allowed to merge pull requests.")
+            print("To fix this, go to your repository Settings -> Actions -> General -> 'Workflow permissions' and check 'Allow GitHub Actions to create and approve pull requests'.\n")
         return False
 
 
@@ -193,7 +200,15 @@ def main():
     )
 
     # Automatically run Quickdraw farming step
-    farm_quickdraw()
+    quickdraw_success = farm_quickdraw()
+
+    if success_count < count:
+        print("\n❌ Error: Some pull requests failed to be created/merged. Check warnings above.")
+        sys.exit(1)
+    
+    if not quickdraw_success:
+        print("\n❌ Error: Quickdraw achievement farming step failed.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
