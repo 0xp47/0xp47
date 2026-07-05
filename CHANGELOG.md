@@ -6,6 +6,8 @@ All notable changes to this repository will be documented in this file.
 
 ## 🚀 Features
 
+- **farm-achievements**: upgrade achievements farmer to support Quickdraw and Pair Extraordinaire achievements (d29f19a) - by @0xp47
+
 - **cli**: add clone_github_config utility script to propagate repository configurations to sibling projects (7d5721a) - by @0xp47
 
 - **ci**: configure dependabot and automatically upgrade all github actions to latest major versions (aa5d0bd) - by @0xp47
@@ -25,6 +27,8 @@ All notable changes to this repository will be documented in this file.
 
 ## 🐛 Bug Fixes
 
+- **ci**: remove javascript-typescript from codeql matrix to avoid build failure (ba284c3) - by @0xp47
+
 - **branding**: change profile repository references to 0xp47 account, use user avatar, change schedules to daily 7 AM PHT (fb243ad) - by @0xp47
 
 - **farm-achievements**: configure explicit write permissions for contents and pull-requests in workflow, and add Windows shell/encoding support to script (75291fc) - by @0xp47
@@ -41,6 +45,14 @@ All notable changes to this repository will be documented in this file.
 
 
 ## 🔧 Maintenance & Chores
+
+- **readme**: auto-update dev metrics [skip ci] (0f325af) - by @github-actions[bot]
+
+- **readme**: auto-update dev metrics [skip ci] (6cd7d5c) - by @github-actions[bot]
+
+- auto-format code and docs [skip ci] (3a81275) - by @github-actions[bot]
+
+- **changelog**: auto-update CHANGELOG.md [skip ci] (065ec14) - by @github-actions[bot]
 
 - **ci**: sanitize legacy brand references in changelog and fix workflow comment pronoun (438b540) - by @0xp47
 
