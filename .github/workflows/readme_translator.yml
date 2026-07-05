@@ -1,0 +1,52 @@
+name: README Translator Sync
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+      - '.github/scripts/readme_translator.py'
+  workflow_dispatch:      # Allow manual triggering
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    name: Sync Translated README
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run README Translator
+        run: python .github/scripts/readme_translator.py
+
+      - name: Commit and push translated README
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.fil.md
+          
+          if git diff --staged --quiet; then
+            echo "No changes in translation."
+            exit 0
+          fi
+          
+          git commit -m "chore(docs): sync translated README.fil.md [skip ci]"
+          
+          # Pull latest changes using rebase to avoid conflict
+          git pull --rebase -X theirs origin main
+          git push origin HEAD:main

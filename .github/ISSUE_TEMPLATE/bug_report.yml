@@ -1,0 +1,60 @@
+name: "🐛 Bug Report"
+description: "Report a bug or unexpected behavior in the repository"
+title: "[BUG]: "
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please be as detailed as possible to help us triage it faster.
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: "Bug Description"
+      description: "A clear and concise description of what the bug is."
+      placeholder: "When I run script X, it fails with error Y..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: "Steps to Reproduce"
+      description: "What are the exact steps to reproduce the bug?"
+      placeholder: |
+        1. Run python .github/scripts/...
+        2. Wait for execution...
+        3. See error in logs...
+    validations:
+      required: true
+  - type: dropdown
+    id: environment-os
+    attributes:
+      label: "Operating System"
+      description: "What operating system did you experience this on?"
+      options:
+        - Windows
+        - macOS
+        - Ubuntu / Debian Linux
+        - WSL (Windows Subsystem for Linux)
+        - Android / Termux
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected Behavior"
+      description: "What did you expect to happen instead?"
+      placeholder: "The script should complete and push changes successfully..."
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "Triage Checklist"
+      options:
+        - label: "I have checked for existing open issues regarding this bug."
+          required: true
+        - label: "I have configured all three action secrets (WakaTime, Discord, GitHub Token)."
+          required: false

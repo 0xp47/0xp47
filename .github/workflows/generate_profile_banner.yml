@@ -1,0 +1,53 @@
+name: Generate Profile Banner
+
+on:
+  schedule:
+    - cron: '0 1 * * *'   # Run daily at 01:00 UTC
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+      - '.github/scripts/generate_profile_banner.py'
+  workflow_dispatch:      # Allow manual triggering
+
+permissions:
+  contents: write
+
+jobs:
+  generate-banner:
+    runs-on: ubuntu-latest
+    name: Generate Banner SVG
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Banner Generator
+        env:
+          PROFILE_GITHUB_TOKEN: ${{ secrets.PROFILE_GITHUB_TOKEN }}
+        run: python .github/scripts/generate_profile_banner.py
+
+      - name: Commit and push banner SVG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add images/profile_banner.svg
+          
+          if git diff --staged --quiet; then
+            echo "No changes in profile banner."
+            exit 0
+          fi
+          
+          git commit -m "chore(stats): regenerate profile banner SVG [skip ci]"
+          git push origin HEAD:main
