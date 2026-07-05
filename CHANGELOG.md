@@ -6,6 +6,8 @@ All notable changes to this repository will be documented in this file.
 
 ## 🚀 Features
 
+- **cli**: add clone_github_config utility script to propagate repository configurations to sibling projects (7d5721a) - by @0xp47
+
 - **ci**: configure dependabot and automatically upgrade all github actions to latest major versions (aa5d0bd) - by @0xp47
 
 - **archiving-triaging**: integrate PR linter/labeler, auto-todo issue creator, and automated metadata backups workflow (164ff1e) - by @0xp47
@@ -39,6 +41,12 @@ All notable changes to this repository will be documented in this file.
 
 
 ## 🔧 Maintenance & Chores
+
+- auto-format code and docs [skip ci] (5eb77d6) - by @github-actions[bot]
+
+- **readme**: auto-update dev metrics [skip ci] (da0bed0) - by @github-actions[bot]
+
+- **changelog**: auto-update CHANGELOG.md [skip ci] (593c9ad) - by @github-actions[bot]
 
 - **readme**: auto-update dev metrics [skip ci] (7957151) - by @github-actions[bot]
 
