@@ -139,9 +139,7 @@ async def achievements(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed)
 
 
-@client.tree.command(
-    name="links", description="Show 0xp47 developer and profile links"
-)
+@client.tree.command(name="links", description="Show 0xp47 developer and profile links")
 async def links(interaction: discord.Interaction):
     embed = discord.Embed(
         title="🌐 0xp47 Developer Hub",
