@@ -59,10 +59,6 @@ const developer = {
 export default developer;
 ```
 
-<div align="center">
-    <img src="images/multi_repo_languages.svg" alt="0xp47's Multi-Repository Language Stats" width="850">
-</div>
-
 <!-- STATS:START -->
 ```text
 0xp47 · Dev Metrics                                                        | Quick Insights
