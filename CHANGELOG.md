@@ -27,6 +27,10 @@ All notable changes to this repository will be documented in this file.
 
 ## 🐛 Bug Fixes
 
+- **farm-achievements**: ensure non-zero exit status on failure and add workflow settings configuration tips (09f7301) - by @0xp47
+
+- **farm-achievements**: add issues write permission for quickdraw farming step (f906d92) - by @0xp47
+
 - **ci**: remove javascript-typescript from codeql matrix to avoid build failure (ba284c3) - by @0xp47
 
 - **branding**: change profile repository references to 0xp47 account, use user avatar, change schedules to daily 7 AM PHT (fb243ad) - by @0xp47
@@ -45,6 +49,14 @@ All notable changes to this repository will be documented in this file.
 
 
 ## 🔧 Maintenance & Chores
+
+- **readme**: auto-update dev metrics [skip ci] (cbbc770) - by @github-actions[bot]
+
+- **readme**: auto-update dev metrics [skip ci] (ffe5645) - by @github-actions[bot]
+
+- auto-format code and docs [skip ci] (4f6d9a9) - by @github-actions[bot]
+
+- **changelog**: auto-update CHANGELOG.md [skip ci] (11dd046) - by @github-actions[bot]
 
 - **readme**: auto-update dev metrics [skip ci] (0f325af) - by @github-actions[bot]
 
