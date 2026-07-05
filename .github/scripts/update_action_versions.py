@@ -6,9 +6,9 @@ import re
 import requests
 
 # Configure UTF-8 encoding for Windows terminals
-if sys.platform.startswith('win'):
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+if sys.platform.startswith("win"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 WORKFLOWS_DIR = ".github/workflows"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("PROFILE_GITHUB_TOKEN")
@@ -31,16 +31,16 @@ def fetch_latest_major_version(action_name):
     parts = action_name.split("/")
     if len(parts) < 2:
         return None
-    
+
     owner, repo = parts[0], parts[1]
     repo_key = f"{owner}/{repo}"
-    
+
     if repo_key in version_cache:
         return version_cache[repo_key]
-        
+
     print(f"Querying GitHub API for latest version of: {repo_key}...")
     headers = get_headers()
-    
+
     # Method 1: Get latest release
     release_url = f"https://api.github.com/repos/{owner}/{repo}/releases/latest"
     try:
@@ -89,24 +89,25 @@ def update_workflows():
     if not os.path.exists(WORKFLOWS_DIR):
         print(f"Directory {WORKFLOWS_DIR} not found.")
         return
-        
+
     workflow_files = [
-        f for f in os.listdir(WORKFLOWS_DIR)
-        if f.endswith((".yml", ".yaml"))
+        f for f in os.listdir(WORKFLOWS_DIR) if f.endswith((".yml", ".yaml"))
     ]
-    
-    action_use_pattern = re.compile(r"(\s+uses:\s*)([a-zA-Z0-9-_]+/[a-zA-Z0-9-_/]+)@([a-zA-Z0-9-_.]+)")
-    
+
+    action_use_pattern = re.compile(
+        r"(\s+uses:\s*)([a-zA-Z0-9-_]+/[a-zA-Z0-9-_/]+)@([a-zA-Z0-9-_.]+)"
+    )
+
     for filename in workflow_files:
         filepath = os.path.join(WORKFLOWS_DIR, filename)
         try:
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
-                
+
             modified = False
             lines = content.splitlines()
             new_lines = []
-            
+
             for line in lines:
                 match = action_use_pattern.search(line)
                 if match:
@@ -115,10 +116,12 @@ def update_workflows():
                     if action.startswith(("./", ".")):
                         new_lines.append(line)
                         continue
-                        
+
                     latest_ver = fetch_latest_major_version(action)
                     if latest_ver and latest_ver != current_ver:
-                        print(f"   Updating {filename}: {action}@{current_ver} -> @{latest_ver}")
+                        print(
+                            f"   Updating {filename}: {action}@{current_ver} -> @{latest_ver}"
+                        )
                         # Reconstruct the line preserving whitespace indentation
                         new_line = action_use_pattern.sub(f"\\1\\2@{latest_ver}", line)
                         new_lines.append(new_line)
@@ -127,17 +130,19 @@ def update_workflows():
                         new_lines.append(line)
                 else:
                     new_lines.append(line)
-                    
+
             if modified:
                 with open(filepath, "w", encoding="utf-8") as f:
                     f.write("\n".join(new_lines) + "\n")
-                    
+
         except Exception as e:
             print(f"Error processing {filepath}: {e}")
 
 
 def main():
-    print("🏥 Checking and upgrading all GitHub Actions in workflows to latest stable versions...")
+    print(
+        "🏥 Checking and upgrading all GitHub Actions in workflows to latest stable versions..."
+    )
     update_workflows()
     print("🏥 Actions update complete!")
 
