@@ -132,36 +132,3 @@ Stats & Proficiency
 ```
 
 <!-- STATS:END -->
-
-## Ground Zero Community
-
-Ready to advance your technical journey?
-
-Join **Ground Zero**, a professional community where developers, students, designers, creators, and technology enthusiasts collaborate to learn, build, and grow. Whether you are writing your first line of code, exploring emerging technologies, or working on production-ready systems, you will find a network of peers who share your passion.
-
-### What our community offers:
-
-- Technical discussions and programming support
-- Web, mobile, and software engineering collaboration
-- UI/UX design and review
-- Cybersecurity analysis and best practices
-- Artificial Intelligence and machine learning exploration
-- Open-source contributions and project management
-- Shared industry news, learning resources, and documentation
-- Project showcases with constructive peer feedback
-- Networking opportunities with industry professionals and peers
-- A collaborative environment designed for continuous learning
-
-Connect with a network of builders and creators dedicated to exploring technology.
-
-### Connect with us:
-
-- **Facebook Page:** [Ground Zero Digital](https://www.facebook.com/GroundZeroDigital/)
-- **Facebook Group:** [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
-- **Facebook Group Chat:** [Messenger Invitation Link](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
-- **GitHub:** [GroundZero-Community](https://github.com/GroundZeroCommunity)
-- **Discord:** [Join our Discord Server](https://discord.gg/4H2v6UwjmY)
-
-Everyone is welcome regardless of experience level. We invite you to learn new skills, contribute to ongoing projects, expand your network, and grow alongside a dedicated community of technology leaders.
-
-We look forward to welcoming you to Ground Zero.

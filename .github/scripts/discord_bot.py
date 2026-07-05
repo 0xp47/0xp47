@@ -140,32 +140,27 @@ async def achievements(interaction: discord.Interaction):
 
 
 @client.tree.command(
-    name="links", description="Show 0xp47 profile and community links"
+    name="links", description="Show 0xp47 developer and profile links"
 )
 async def links(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="🌐 0xp47 Community Hub",
-        description="Connect with us across all platforms!",
+        title="🌐 0xp47 Developer Hub",
+        description="Connect with me across these platforms!",
         color=discord.Color.green(),
     )
     embed.add_field(
-        name="💬 Discord Server",
-        value="[Join Discord](https://discord.gg/4H2v6UwjmY)",
+        name="🖥️ GitHub Profile",
+        value="[github.com/0xp47](https://github.com/0xp47)",
         inline=True,
     )
     embed.add_field(
-        name="👥 Facebook Group",
-        value="[Join Facebook Group](https://www.facebook.com/groups/groundzerocommunity/)",
+        name="📁 Portfolio Website",
+        value="[0xp47.vercel.app](https://0xp47.vercel.app)",
         inline=True,
     )
     embed.add_field(
-        name="📢 Facebook Page",
-        value="[View Facebook Page](https://www.facebook.com/GroundZeroDigital/)",
-        inline=True,
-    )
-    embed.add_field(
-        name="💬 Messenger GC",
-        value="[Invitation Link](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)",
+        name="🌳 Linktree",
+        value="[0xp47.github.io/linktree](https://0xp47.github.io/linktree)",
         inline=False,
     )
 

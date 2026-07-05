@@ -37,15 +37,7 @@ jobs:
               
               Welcome to **@0xp47's repository**! Thank you for opening an issue. 
               
-              Whether you are here to report a bug, request a feature, or ask a question, we're glad to have you. We will review this shortly.
-              
-              ### 🌐 Connect with 0xp47:
-              * **Discord Server**: [Join our Discord](https://discord.gg/4H2v6UwjmY)
-              * **Facebook Group**: [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
-              * **Facebook Page**: [Ground Zero Digital](https://www.facebook.com/GroundZeroDigital/)
-              * **Messenger Invitation Link**: [Messenger Group Chat](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
-              
-              Looking forward to collaborating with you! 🚀`;
+              Whether you are here to report a bug, request a feature, or ask a question, we're glad to have you. We will review this shortly. 🚀`;
               
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -76,14 +68,7 @@ jobs:
               
               Thank you so much for your pull request! Contributing code or updates is the best way to grow together as developers. We really appreciate your effort.
               
-              We will review your changes shortly. While you wait, make sure to check out our main community hubs to discuss your work and meet other builders:
-              
-              ### 🌐 Join the conversation:
-              * **Discord Server**: [Join our Discord](https://discord.gg/4H2v6UwjmY)
-              * **Facebook Group**: [Ground Zero Community](https://www.facebook.com/groups/groundzerocommunity/)
-              * **Messenger Group Chat**: [Messenger Invitation](https://m.me/j/AbarRjK6c6jmhIn9/?send_source=gc%3Acopy_invite_link_t)
-              
-              Thanks again, and happy coding! 💻✨`;
+              We will review your changes shortly. Happy coding! 💻✨`;
               
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
