@@ -2,6 +2,10 @@
 import subprocess
 import time
 import sys
+import io
+if sys.platform.startswith('win'):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 import os
 import random
 
@@ -10,7 +14,12 @@ PROGRESS_FILE = "achievements/pull-shark-progress.md"
 
 
 def run_cmd(args):
-    result = subprocess.run(args, capture_output=True, text=True)
+    result = subprocess.run(
+        args,
+        capture_output=True,
+        text=True,
+        shell=sys.platform.startswith("win"),
+    )
     if result.returncode != 0:
         print(f"Error running command: {' '.join(args)}")
         print(f"Stdout: {result.stdout}")

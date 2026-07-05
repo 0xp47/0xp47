@@ -8,6 +8,10 @@ on:
         required: true
         default: '5'
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   farm:
     runs-on: ubuntu-latest
