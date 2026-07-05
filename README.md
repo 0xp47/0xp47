@@ -54,7 +54,6 @@ export default developer;
 ```
 
 <!-- STATS:START -->
-
 ```text
 0xp47 · Dev Metrics                                                        | Quick Insights
 From: 2020 - To: 2026                                                      | Top Lang : Python (25.83%)
@@ -71,11 +70,11 @@ Stats & Proficiency
  Python            ▰▰▰▱▱▱▱▱▱▱   25.83 %   | 231.36 h                       |  /\_/\
  JavaScript        ▰▰▱▱▱▱▱▱▱▱   23.00 %   | 206.01 h                       | ( o.o )
  TypeScript        ▰▱▱▱▱▱▱▱▱▱   11.04 %   | 98.87 h                        |  > ^ <
- PHP               ▰▱▱▱▱▱▱▱▱▱    9.15 %   | 81.96 h                        | Great DX creates great UX.
- Markdown          ▰▱▱▱▱▱▱▱▱▱    6.30 %   | 56.39 h                        | Simple code survives long-t...
- SQL               ▱▱▱▱▱▱▱▱▱▱    4.83 %   | 43.23 h                        | Ship small. Learn fast.
- JSON              ▱▱▱▱▱▱▱▱▱▱    4.22 %   | 37.76 h                        | Readable code scales teams.
- CSS               ▱▱▱▱▱▱▱▱▱▱    3.51 %   | 31.44 h                        | Tests turn fear into speed.
+ PHP               ▰▱▱▱▱▱▱▱▱▱    9.15 %   | 81.96 h                        | Readable code scales teams.
+ Markdown          ▰▱▱▱▱▱▱▱▱▱    6.30 %   | 56.39 h                        | Automation buys thinking time.
+ SQL               ▱▱▱▱▱▱▱▱▱▱    4.83 %   | 43.23 h                        | Refactor early, ship confid...
+ JSON              ▱▱▱▱▱▱▱▱▱▱    4.22 %   | 37.76 h                        | Great DX creates great UX.
+ CSS               ▱▱▱▱▱▱▱▱▱▱    3.51 %   | 31.44 h                        | Consistency compounds quality.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -128,7 +127,6 @@ Stats & Proficiency
  ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.83 %   | 25.35 h                       | Ready to build.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 18:58:32 PHT
+ Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-05 19:01:04 PHT
 ```
-
 <!-- STATS:END -->
