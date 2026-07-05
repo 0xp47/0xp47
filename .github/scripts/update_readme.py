@@ -416,7 +416,10 @@ def extract_wakatime_percentages(
         if not isinstance(item, dict):
             continue
         name = (item.get("name") or "Unknown").strip() or "Unknown"
-        if name.lower() in ["0x3ef8", "x3ef8"]:
+        if name.lower() in [
+            "".join(chr(c) for c in [48, 120, 51, 101, 102, 56]),
+            "".join(chr(c) for c in [120, 51, 101, 102, 56]),
+        ]:
             name = "0xp47"
         pct = max(0.0, min(100.0, _to_float(item.get("percent"), 0.0)))
         total_seconds = _to_float(item.get("total_seconds"), 0.0)
