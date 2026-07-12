@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="280" viewBox="0 0 450 280" fill="none">
+    <style>
+        .card {
+            fill: #0d1117;
+            stroke: #30363d;
+            stroke-width: 1.5;
+            rx: 10px;
+        }
+        .title {
+            font: 600 18px 'Inter', -apple-system, sans-serif;
+            fill: #58a6ff;
+        }
+        .subtitle {
+            font: 500 12px 'Inter', -apple-system, sans-serif;
+            fill: #8b949e;
+        }
+        .label {
+            font: 600 13px 'Inter', -apple-system, sans-serif;
+            fill: #c9d1d9;
+        }
+        .value {
+            font: 400 12px 'Inter', -apple-system, sans-serif;
+            fill: #8b949e;
+        }
+        .stat-value {
+            font: 700 16px 'Inter', -apple-system, sans-serif;
+            fill: #ffffff;
+        }
+        .bar-bg {
+            fill: #161b22;
+            rx: 3px;
+        }
+        .bar-fill {
+            rx: 3px;
+            animation: grow 1s ease-out forwards;
+        }
+        @keyframes grow {
+            from { width: 0; }
+        }
+    </style>
+    
+    <!-- Background Card -->
+    <rect class="card" width="448" height="278" x="1" y="1" />
+    
+    <!-- Header -->
+    <text x="25" y="35" class="title">WakaTime Dev Stats</text>
+    <text x="25" y="52" class="subtitle">Last 7 Days Activity</text>
+    
+    <!-- Summary stats side by side -->
+    <text x="280" y="32" class="value">Total Coding Time</text>
+    <text x="280" y="52" class="stat-value">1 hr 57 mins</text>
+    
+    <!-- Separator -->
+    <line x1="25" y1="68" x2="425" y2="68" stroke="#21262d" stroke-width="1" />
+    
+    <!-- TypeScript -->
+    <text x="25" y="102" class="label">TypeScript</text>
+    <rect x="130" y="90" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="90" width="228" height="12" fill="#3178c6" class="bar-fill" />
+    <text x="392" y="101" class="value">91.2%</text>
+        
+    <!-- Markdown -->
+    <text x="25" y="137" class="label">Markdown</text>
+    <rect x="130" y="125" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="125" width="12" height="12" fill="#083fa1" class="bar-fill" />
+    <text x="392" y="136" class="value">5.1%</text>
+        
+    <!-- JavaScript -->
+    <text x="25" y="172" class="label">JavaScript</text>
+    <rect x="130" y="160" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="160" width="9" height="12" fill="#f7df1e" class="bar-fill" />
+    <text x="392" y="171" class="value">3.6%</text>
+        
+    <!-- Separator -->
+    <line x1="25" y1="245" x2="425" y2="245" stroke="#21262d" stroke-width="1" />
+    <text x="25" y="262" class="subtitle">Daily Average: 58 mins</text>
+</svg>
