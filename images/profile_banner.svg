@@ -53,7 +53,7 @@
         <!-- Stat 1: Repos -->
         <g transform="translate(0, 0)">
             <text class="stat-label" x="0" y="12">Repositories</text>
-            <text class="stat-val" x="0" y="34">9</text>
+            <text class="stat-val" x="0" y="34">10</text>
         </g>
         
         <!-- Stat 2: Stars -->
@@ -65,7 +65,7 @@
         <!-- Stat 3: Followers -->
         <g transform="translate(210, 0)">
             <text class="stat-label" x="0" y="12">Followers</text>
-            <text class="stat-val" x="0" y="34">7</text>
+            <text class="stat-val" x="0" y="34">6</text>
         </g>
         
         <!-- Stat 4: Coding Hours -->
