@@ -130,3 +130,9 @@ Stats & Proficiency
  Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-16 08:02:17 PHT
 ```
 <!-- STATS:END -->
+
+
+## 📈 Recent Activity
+<!-- START_SECTION:activity -->
+- ⭐ Starred [`alibaba/page-agent`](https://github.com/alibaba/page-agent)
+<!-- END_SECTION:activity -->
