@@ -71,7 +71,7 @@
         <!-- Stat 4: Coding Hours -->
         <g transform="translate(295, 0)">
             <text class="stat-label" x="0" y="12">Coding Time</text>
-            <text class="stat-val" x="0" y="34">⏱️ 883 hrs 51 mins</text>
+            <text class="stat-val" x="0" y="34">⏱️ 884 hrs 44 mins</text>
         </g>
     </g>
 </svg>
