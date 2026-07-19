@@ -48,7 +48,7 @@
     
     <!-- Summary stats side by side -->
     <text x="280" y="32" class="value">Total Coding Time</text>
-    <text x="280" y="52" class="stat-value">1 hr 57 mins</text>
+    <text x="280" y="52" class="stat-value">11 hrs 6 mins</text>
     
     <!-- Separator -->
     <line x1="25" y1="68" x2="425" y2="68" stroke="#21262d" stroke-width="1" />
@@ -56,22 +56,34 @@
     <!-- TypeScript -->
     <text x="25" y="102" class="label">TypeScript</text>
     <rect x="130" y="90" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="90" width="228" height="12" fill="#3178c6" class="bar-fill" />
-    <text x="392" y="101" class="value">91.2%</text>
+    <rect x="130" y="90" width="121" height="12" fill="#3178c6" class="bar-fill" />
+    <text x="392" y="101" class="value">48.5%</text>
         
     <!-- Markdown -->
     <text x="25" y="137" class="label">Markdown</text>
     <rect x="130" y="125" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="125" width="12" height="12" fill="#083fa1" class="bar-fill" />
-    <text x="392" y="136" class="value">5.1%</text>
+    <rect x="130" y="125" width="97" height="12" fill="#083fa1" class="bar-fill" />
+    <text x="392" y="136" class="value">39.2%</text>
         
-    <!-- JavaScript -->
-    <text x="25" y="172" class="label">JavaScript</text>
+    <!-- CSS -->
+    <text x="25" y="172" class="label">CSS</text>
     <rect x="130" y="160" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="160" width="9" height="12" fill="#f7df1e" class="bar-fill" />
-    <text x="392" y="171" class="value">3.6%</text>
+    <rect x="130" y="160" width="9" height="12" fill="#563d7c" class="bar-fill" />
+    <text x="392" y="171" class="value">3.9%</text>
+        
+    <!-- Bash -->
+    <text x="25" y="207" class="label">Bash</text>
+    <rect x="130" y="195" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="195" width="7" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="206" class="value">3.1%</text>
+        
+    <!-- JSON -->
+    <text x="25" y="242" class="label">JSON</text>
+    <rect x="130" y="230" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="230" width="6" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="241" class="value">2.4%</text>
         
     <!-- Separator -->
     <line x1="25" y1="245" x2="425" y2="245" stroke="#21262d" stroke-width="1" />
-    <text x="25" y="262" class="subtitle">Daily Average: 58 mins</text>
+    <text x="25" y="262" class="subtitle">Daily Average: 2 hrs 46 mins</text>
 </svg>
