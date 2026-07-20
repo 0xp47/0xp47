@@ -56,78 +56,78 @@ export default developer;
 <!-- STATS:START -->
 ```text
 0xp47 · Dev Metrics                                                        | Quick Insights
-From: 2020 - To: 2026                                                      | Top Lang : Python (25.46%)
-14 repos (8 public, 6 private)   |   0 stars                               | Top Editor: VS Code (95.34%)
-WakaTime (all time): 888 hrs 22 mins total · 2 hrs 19 mins daily avg       | Peak Time: Evening (61.80%)
-                                                                           | Peak Day : Monday (17.95%)
-                                                                           | All-Time : 908 hrs 40 mins
-                                                                           | Activity : 371 chunks
+From: 2020 - To: 2026                                                      | Top Lang : Python (25.33%)
+14 repos (8 public, 6 private)   |   0 stars                               | Top Editor: VS Code (94.97%)
+WakaTime (all time): 892 hrs 56 mins total · 2 hrs 20 mins daily avg       | Peak Time: Evening (60.22%)
+                                                                           | Peak Day : Monday (18.54%)
+                                                                           | All-Time : 913 hrs 35 mins
+                                                                           | Activity : 421 chunks
 Stats & Proficiency
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Languages
- Python            ▰▰▰▱▱▱▱▱▱▱   25.46 %   | 231.36 h                       |  (\_/)
- JavaScript        ▰▰▱▱▱▱▱▱▱▱   22.68 %   | 206.09 h                       |  (o.o)
- TypeScript        ▰▱▱▱▱▱▱▱▱▱   11.67 %   | 106.06 h                       |  /|_|\
- PHP               ▰▱▱▱▱▱▱▱▱▱    9.02 %   | 81.96 h                        | Refactor early, ship confid...
- Markdown          ▰▱▱▱▱▱▱▱▱▱    6.70 %   | 60.86 h                        | Great DX creates great UX.
- SQL               ▱▱▱▱▱▱▱▱▱▱    4.76 %   | 43.23 h                        | Consistency compounds quality.
- JSON              ▱▱▱▱▱▱▱▱▱▱    4.19 %   | 38.03 h                        | Simple code survives long-t...
- CSS               ▱▱▱▱▱▱▱▱▱▱    3.51 %   | 31.87 h                        | Ship small. Learn fast.
+ Python            ▰▰▰▱▱▱▱▱▱▱   25.33 %   | 231.36 h                       |  /\_/\
+ JavaScript        ▰▰▱▱▱▱▱▱▱▱   22.57 %   | 206.17 h                       | ( o.o )
+ TypeScript        ▰▱▱▱▱▱▱▱▱▱   11.93 %   | 108.93 h                       |  > ^ <
+ PHP               ▰▱▱▱▱▱▱▱▱▱    8.97 %   | 81.96 h                        | Readable code scales teams.
+ Markdown          ▰▱▱▱▱▱▱▱▱▱    6.70 %   | 61.22 h                        | Tests turn fear into speed.
+ SQL               ▱▱▱▱▱▱▱▱▱▱    4.73 %   | 43.23 h                        | Automation buys thinking time.
+ JSON              ▱▱▱▱▱▱▱▱▱▱    4.17 %   | 38.08 h                        | Refactor early, ship confid...
+ CSS               ▱▱▱▱▱▱▱▱▱▱    3.49 %   | 31.87 h                        | Great DX creates great UX.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Projects
- Lumora            ▰▰▰▰▰▱▱▱▱▱    46.08 %   |  5h 16m                       | Keep shipping.
- instructions      ▰▰▱▱▱▱▱▱▱▱    16.00 %   |  1h 49m                       | Solve problems.
- onewatch-extension ▰▱▱▱▱▱▱▱▱▱    13.54 %   |  1h 33m                      | Focus on target.
- LeafSense         ▰▱▱▱▱▱▱▱▱▱     6.65 %   |     45m                       | Fast iteration.
- frontend          ▰▱▱▱▱▱▱▱▱▱     6.54 %   |     44m                       | Refactor and clean.
+ backend           ▰▰▱▱▱▱▱▱▱▱    20.92 %   |  2h 31m                       | Refactor and clean.
+ frontend          ▰▰▱▱▱▱▱▱▱▱    19.12 %   |  2h 18m                       | Keep shipping.
+ instructions      ▰▰▱▱▱▱▱▱▱▱    15.51 %   |  1h 52m                       | Solve problems.
+ Lumora            ▰▱▱▱▱▱▱▱▱▱    14.55 %   |  1h 45m                       | Focus on target.
+ onewatch-extension ▰▱▱▱▱▱▱▱▱▱    12.84 %   |  1h 33m                      | Fast iteration.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  I Code Most During
 
- Morning    (06-12)   ▰▱▱▱▱▱▱▱▱▱    6.79 %   | 60.28 h                     | Build and iterate.
- Daytime    (12-18)   ▰▰▰▱▱▱▱▱▱▱   26.65 %   | 236.79 h                    | Feature flow window.
- Evening    (18-24)   ▰▰▰▰▰▰▱▱▱▱   61.80 %   | 549.04 h                    | Deep focus zone.
- Night      (00-06)   ▱▱▱▱▱▱▱▱▱▱    4.76 %   | 42.26 h                     | Review and polish.
+ Morning    (06-12)   ▰▱▱▱▱▱▱▱▱▱   12.28 %   | 109.69 h                    | Feature flow window.
+ Daytime    (12-18)   ▰▰▱▱▱▱▱▱▱▱   23.04 %   | 205.75 h                    | Deep focus zone.
+ Evening    (18-24)   ▰▰▰▰▰▰▱▱▱▱   60.22 %   | 537.75 h                    | Review and polish.
+ Night      (00-06)   ▱▱▱▱▱▱▱▱▱▱    4.45 %   | 39.75 h                     | Debug and refine.
 
  I Am Most Productive On
 
- Monday     ▰▰▱▱▱▱▱▱▱▱   17.95 %   | 114.50 h                              | Automation day
- Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.82 %   | 81.76 h                               | Learning day
- Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.33 %   | 78.62 h                               | Planning day
- Thursday   ▰▰▱▱▱▱▱▱▱▱   15.14 %   | 96.59 h                               | Momentum day
- Friday     ▰▱▱▱▱▱▱▱▱▱   11.96 %   | 76.30 h                               | Shipping day
- Saturday   ▰▰▱▱▱▱▱▱▱▱   15.73 %   | 100.31 h                              | Refactor day
- Sunday     ▰▱▱▱▱▱▱▱▱▱   14.07 %   | 89.76 h                               | Review day
+ Monday     ▰▰▱▱▱▱▱▱▱▱   18.54 %   | 119.20 h                              | Review day
+ Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.75 %   | 81.99 h                               | Automation day
+ Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.23 %   | 78.62 h                               | Learning day
+ Thursday   ▰▰▱▱▱▱▱▱▱▱   15.02 %   | 96.59 h                               | Planning day
+ Friday     ▰▱▱▱▱▱▱▱▱▱   11.87 %   | 76.30 h                               | Momentum day
+ Saturday   ▰▰▱▱▱▱▱▱▱▱   15.61 %   | 100.33 h                              | Shipping day
+ Sunday     ▰▱▱▱▱▱▱▱▱▱   13.98 %   | 89.88 h                               | Refactor day
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Editors
- VS Code           ▰▰▰▰▰▰▰▰▰▰    95.34 %   | 866.30 h                      | Focus mode ready.
- Acode             ▱▱▱▱▱▱▱▱▱▱     2.29 %   | 20.82 h                       | Keyboard-first workflow.
- Antigravity Desktop ▱▱▱▱▱▱▱▱▱▱       <1 %   |  8.48 h                     | Fast feedback loop.
- Antigravity       ▱▱▱▱▱▱▱▱▱▱       <1 %   |  5.93 h                       | Plugins tuned for speed.
- Antigravity IDE   ▱▱▱▱▱▱▱▱▱▱       <1 %   |  4.21 h                       | Focus mode ready.
+ VS Code           ▰▰▰▰▰▰▰▰▰▱    94.97 %   | 867.40 h                      | Keyboard-first workflow.
+ Acode             ▱▱▱▱▱▱▱▱▱▱     2.28 %   | 20.82 h                       | Fast feedback loop.
+ Antigravity Desktop ▱▱▱▱▱▱▱▱▱▱     1.32 %   | 12.07 h                     | Plugins tuned for speed.
+ Antigravity       ▱▱▱▱▱▱▱▱▱▱       <1 %   |  5.93 h                       | Focus mode ready.
+ Antigravity IDE   ▱▱▱▱▱▱▱▱▱▱       <1 %   |  4.21 h                       | Keyboard-first workflow.
 
  Operating Systems
- Windows           ▰▰▰▰▰▰▰▰▰▱    94.57 %   | 859.36 h                      | Automation friendly.
- WSL               ▱▱▱▱▱▱▱▱▱▱     3.10 %   | 28.15 h                       | Stable dev environment.
- Android           ▱▱▱▱▱▱▱▱▱▱     2.29 %   | 20.82 h                       | Toolchain optimized.
- Linux             ▱▱▱▱▱▱▱▱▱▱       <1 %   |  0.34 h                       | Build-ready setup.
+ Windows           ▰▰▰▰▰▰▰▰▰▱    94.60 %   | 864.05 h                      | Stable dev environment.
+ WSL               ▱▱▱▱▱▱▱▱▱▱     3.08 %   | 28.15 h                       | Toolchain optimized.
+ Android           ▱▱▱▱▱▱▱▱▱▱     2.28 %   | 20.82 h                       | Build-ready setup.
+ Linux             ▱▱▱▱▱▱▱▱▱▱       <1 %   |  0.34 h                       | Automation friendly.
 
  Machines & Devices
- ROG-Zephyrus      ▰▰▰▰▱▱▱▱▱▱    42.95 %   | 390.23 h                      | On-the-go focus.
- w11               ▰▰▱▱▱▱▱▱▱▱    18.72 %   | 170.10 h                      | Hardware optimized.
- 0xp47             ▰▰▱▱▱▱▱▱▱▱    17.41 %   | 158.23 h                      | Ready to build.
- ubuntu            ▰▱▱▱▱▱▱▱▱▱    11.63 %   | 105.71 h                      | Workstation tuned.
- ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.79 %   | 25.35 h                       | On-the-go focus.
+ ROG-Zephyrus      ▰▰▰▰▱▱▱▱▱▱    43.24 %   | 394.93 h                      | Hardware optimized.
+ w11               ▰▰▱▱▱▱▱▱▱▱    18.62 %   | 170.10 h                      | Ready to build.
+ 0xp47             ▰▰▱▱▱▱▱▱▱▱    17.32 %   | 158.23 h                      | Workstation tuned.
+ ubuntu            ▰▱▱▱▱▱▱▱▱▱    11.57 %   | 105.71 h                      | On-the-go focus.
+ ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.78 %   | 25.35 h                       | Hardware optimized.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-20 10:57:21 PHT
+ Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-21 07:59:30 PHT
 ```
 <!-- STATS:END -->
 
