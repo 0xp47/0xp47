@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Labeler Action
-        uses: actions/labeler@v6
+        uses: actions/labeler@v7
         with:
           configuration-path: .github/labeler.yml
           dot: true
