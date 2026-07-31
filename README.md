@@ -67,9 +67,9 @@ Stats & Proficiency
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Languages
- Python            ▰▰▱▱▱▱▱▱▱▱   24.02 %   | 233.13 h                       |  (\_/)
- JavaScript        ▰▰▱▱▱▱▱▱▱▱   21.33 %   | 207.02 h                       |  (o.o)
- TypeScript        ▰▱▱▱▱▱▱▱▱▱   14.09 %   | 136.73 h                       |  /|_|\
+ Python            ▰▰▱▱▱▱▱▱▱▱   24.02 %   | 233.13 h                       |  /\_/\
+ JavaScript        ▰▰▱▱▱▱▱▱▱▱   21.33 %   | 207.02 h                       | / o o \
+ TypeScript        ▰▱▱▱▱▱▱▱▱▱   14.09 %   | 136.73 h                       |  \_^_/
  PHP               ▰▱▱▱▱▱▱▱▱▱    8.56 %   | 83.11 h                        | Great DX creates great UX.
  Markdown          ▰▱▱▱▱▱▱▱▱▱    8.21 %   | 79.65 h                        | Ship small. Learn fast.
  SQL               ▱▱▱▱▱▱▱▱▱▱    4.50 %   | 43.71 h                        | Readable code scales teams.
@@ -79,11 +79,11 @@ Stats & Proficiency
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Projects
- frontend          ▰▰▰▰▰▱▱▱▱▱    48.22 %   |  3h 29m                       | Keep shipping.
- beautyhub         ▰▰▱▱▱▱▱▱▱▱    23.76 %   |  1h 43m                       | Solve problems.
- nimji             ▰▰▱▱▱▱▱▱▱▱    16.83 %   |  1h 13m                       | Focus on target.
- backend           ▰▱▱▱▱▱▱▱▱▱     9.19 %   |     39m                       | Fast iteration.
- LeafSense         ▱▱▱▱▱▱▱▱▱▱     2.00 %   |      8m                       | Refactor and clean.
+ frontend          ▰▰▰▰▱▱▱▱▱▱    43.71 %   |  2h 54m                       | Focus on target.
+ beautyhub         ▰▰▰▱▱▱▱▱▱▱    25.83 %   |  1h 43m                       | Fast iteration.
+ nimji             ▰▰▱▱▱▱▱▱▱▱    18.29 %   |  1h 13m                       | Refactor and clean.
+ backend           ▰▱▱▱▱▱▱▱▱▱    10.00 %   |     39m                       | Keep shipping.
+ LeafSense         ▱▱▱▱▱▱▱▱▱▱     2.18 %   |      8m                       | Solve problems.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -96,13 +96,13 @@ Stats & Proficiency
 
  I Am Most Productive On
 
- Monday     ▰▰▱▱▱▱▱▱▱▱   18.32 %   | 119.35 h                              | Review day
- Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.62 %   | 82.17 h                               | Automation day
- Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.52 %   | 81.55 h                               | Learning day
- Thursday   ▰▱▱▱▱▱▱▱▱▱   14.89 %   | 96.98 h                               | Planning day
- Friday     ▰▱▱▱▱▱▱▱▱▱   11.85 %   | 77.19 h                               | Momentum day
- Saturday   ▰▰▱▱▱▱▱▱▱▱   15.74 %   | 102.53 h                              | Shipping day
- Sunday     ▰▱▱▱▱▱▱▱▱▱   14.05 %   | 91.52 h                               | Refactor day
+ Monday     ▰▰▱▱▱▱▱▱▱▱   18.32 %   | 119.35 h                              | Planning day
+ Tuesday    ▰▱▱▱▱▱▱▱▱▱   12.62 %   | 82.17 h                               | Momentum day
+ Wednesday  ▰▱▱▱▱▱▱▱▱▱   12.52 %   | 81.55 h                               | Shipping day
+ Thursday   ▰▱▱▱▱▱▱▱▱▱   14.89 %   | 96.98 h                               | Refactor day
+ Friday     ▰▱▱▱▱▱▱▱▱▱   11.85 %   | 77.19 h                               | Review day
+ Saturday   ▰▰▱▱▱▱▱▱▱▱   15.74 %   | 102.53 h                              | Automation day
+ Sunday     ▰▱▱▱▱▱▱▱▱▱   14.05 %   | 91.52 h                               | Learning day
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -128,7 +128,7 @@ Stats & Proficiency
  ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.61 %   | 25.35 h                       | Workstation tuned.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-30 08:03:28 PHT
+ Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-07-31 08:05:39 PHT
 ```
 <!-- STATS:END -->
 
