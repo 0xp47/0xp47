@@ -137,6 +137,4 @@ Stats & Proficiency
 <!-- START_SECTION:activity -->
 - 🌱 Created branch `main` in [`Beauty-hub-ecommerce`](https://github.com/0xp47/Beauty-hub-ecommerce)
 - ✅ Closed Issue [#26](https://github.com/0xp47/0xp47/issues/26) in [`0xp47`](https://github.com/0xp47/0xp47): "*⚠️ Broken Links Detected in README.md*"
-- 🌱 Created branch `main` in [`nimji`](https://github.com/0xp47/nimji)
-- ⭐ Starred [`alibaba/page-agent`](https://github.com/alibaba/page-agent)
 <!-- END_SECTION:activity -->
