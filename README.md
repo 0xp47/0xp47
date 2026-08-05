@@ -58,41 +58,41 @@ export default developer;
 0xp47 · Dev Metrics                                                        | Quick Insights
 From: 2020 - To: 2026                                                      | Top Lang : Python (23.88%)
 16 repos (10 public, 6 private)   |   0 stars                              | Top Editor: VS Code (85.36%)
-WakaTime (all time): 955 hrs 51 mins total · 2 hrs 20 mins daily avg       | Peak Time: Evening (47.22%)
+WakaTime (all time): 955 hrs 51 mins total · 2 hrs 20 mins daily avg       | Peak Time: Evening (47.07%)
                                                                            | Peak Day : Monday (18.10%)
                                                                            | All-Time : 976 hrs 22 mins
-                                                                           | Activity : 80 chunks
+                                                                           | Activity : 76 chunks
 Stats & Proficiency
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Languages
- Python            ▰▰▱▱▱▱▱▱▱▱   23.88 %   | 233.13 h                       |  (\_/)
- JavaScript        ▰▰▱▱▱▱▱▱▱▱   21.20 %   | 207.02 h                       |  (o.o)
- TypeScript        ▰▱▱▱▱▱▱▱▱▱   14.17 %   | 138.35 h                       |  /|_|\
- PHP               ▰▱▱▱▱▱▱▱▱▱    8.79 %   | 85.85 h                        | Tests turn fear into speed.
- Markdown          ▰▱▱▱▱▱▱▱▱▱    8.19 %   | 79.92 h                        | Consistency compounds quality.
- SQL               ▱▱▱▱▱▱▱▱▱▱    4.52 %   | 44.11 h                        | Simple code survives long-t...
- JSON              ▱▱▱▱▱▱▱▱▱▱    4.02 %   | 39.24 h                        | Ship small. Learn fast.
- CSS               ▱▱▱▱▱▱▱▱▱▱    3.46 %   | 33.77 h                        | Readable code scales teams.
+ Python            ▰▰▱▱▱▱▱▱▱▱   23.88 %   | 233.13 h                       |  /\_/\
+ JavaScript        ▰▰▱▱▱▱▱▱▱▱   21.20 %   | 207.02 h                       | / o o \
+ TypeScript        ▰▱▱▱▱▱▱▱▱▱   14.17 %   | 138.35 h                       |  \_^_/
+ PHP               ▰▱▱▱▱▱▱▱▱▱    8.79 %   | 85.85 h                        | Readable code scales teams.
+ Markdown          ▰▱▱▱▱▱▱▱▱▱    8.19 %   | 79.92 h                        | Tests turn fear into speed.
+ SQL               ▱▱▱▱▱▱▱▱▱▱    4.52 %   | 44.11 h                        | Automation buys thinking time.
+ JSON              ▱▱▱▱▱▱▱▱▱▱    4.02 %   | 39.24 h                        | Refactor early, ship confid...
+ CSS               ▱▱▱▱▱▱▱▱▱▱    3.46 %   | 33.77 h                        | Great DX creates great UX.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  Projects
- marsha            ▰▰▰▰▰▱▱▱▱▱    51.51 %   |   4h 0m                       | Keep shipping.
- beautyhub         ▰▰▱▱▱▱▱▱▱▱    22.13 %   |  1h 43m                       | Solve problems.
- Lumora-Frontend   ▰▰▱▱▱▱▱▱▱▱    20.30 %   |  1h 34m                       | Focus on target.
- admin             ▱▱▱▱▱▱▱▱▱▱     2.61 %   |     12m                       | Fast iteration.
- instructions      ▱▱▱▱▱▱▱▱▱▱     1.34 %   |      6m                       | Refactor and clean.
+ marsha            ▰▰▰▰▰▱▱▱▱▱    52.85 %   |   4h 0m                       | Focus on target.
+ Lumora-Frontend   ▰▰▱▱▱▱▱▱▱▱    20.83 %   |  1h 34m                       | Fast iteration.
+ beautyhub         ▰▰▱▱▱▱▱▱▱▱    20.82 %   |  1h 34m                       | Refactor and clean.
+ admin             ▱▱▱▱▱▱▱▱▱▱     2.68 %   |     12m                       | Keep shipping.
+ instructions      ▱▱▱▱▱▱▱▱▱▱     1.38 %   |      6m                       | Solve problems.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
  I Code Most During
 
- Morning    (06-12)   ▰▰▰▱▱▱▱▱▱▱   30.88 %   | 295.14 h                    | Plan and warm up.
- Daytime    (12-18)   ▰▰▱▱▱▱▱▱▱▱   19.37 %   | 185.13 h                    | Build and iterate.
- Evening    (18-24)   ▰▰▰▰▰▱▱▱▱▱   47.22 %   | 451.36 h                    | Feature flow window.
- Night      (00-06)   ▱▱▱▱▱▱▱▱▱▱    2.54 %   | 24.23 h                     | Deep focus zone.
+ Morning    (06-12)   ▰▰▰▱▱▱▱▱▱▱   29.58 %   | 282.78 h                    | Feature flow window.
+ Daytime    (12-18)   ▰▰▱▱▱▱▱▱▱▱   20.56 %   | 196.55 h                    | Deep focus zone.
+ Evening    (18-24)   ▰▰▰▰▰▱▱▱▱▱   47.07 %   | 449.93 h                    | Review and polish.
+ Night      (00-06)   ▱▱▱▱▱▱▱▱▱▱    2.78 %   | 26.60 h                     | Debug and refine.
 
  I Am Most Productive On
 
@@ -128,7 +128,7 @@ Stats & Proficiency
  ILLC-05           ▱▱▱▱▱▱▱▱▱▱     2.60 %   | 25.35 h                       | Hardware optimized.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-08-04 08:11:35 PHT
+ Languages/Time/Day/Editors/OS from WakaTime API · Repo stats from GitHub API · Updated: 2026-08-05 08:07:52 PHT
 ```
 <!-- STATS:END -->
 
