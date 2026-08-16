@@ -135,6 +135,8 @@ Stats & Proficiency
 ## 📈 Recent Activity
 
 <!-- START_SECTION:activity -->
+- ⭐ Starred [`AminBlg/SimpleEnglish`](https://github.com/AminBlg/SimpleEnglish)
+- 🌱 Created branch `main` in [`notebooklm-watermark-remover`](https://github.com/0xp47/notebooklm-watermark-remover)
 - ⭐ Starred [`subzeroid/instagrapi`](https://github.com/subzeroid/instagrapi)
 - 🌱 Created branch `main` in [`test`](https://github.com/0xp47/test)
 - 🌱 Created branch `main` in [`Lumina-Facebook-Page-Bot`](https://github.com/0xp47/Lumina-Facebook-Page-Bot)
