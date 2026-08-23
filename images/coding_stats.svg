@@ -48,7 +48,7 @@
     
     <!-- Summary stats side by side -->
     <text x="280" y="32" class="value">Total Coding Time</text>
-    <text x="280" y="52" class="stat-value">14 hrs 32 mins</text>
+    <text x="280" y="52" class="stat-value">12 hrs 19 mins</text>
     
     <!-- Separator -->
     <line x1="25" y1="68" x2="425" y2="68" stroke="#21262d" stroke-width="1" />
@@ -56,34 +56,34 @@
     <!-- TypeScript -->
     <text x="25" y="102" class="label">TypeScript</text>
     <rect x="130" y="90" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="90" width="112" height="12" fill="#3178c6" class="bar-fill" />
-    <text x="392" y="101" class="value">44.9%</text>
+    <rect x="130" y="90" width="114" height="12" fill="#3178c6" class="bar-fill" />
+    <text x="392" y="101" class="value">45.8%</text>
         
     <!-- Markdown -->
     <text x="25" y="137" class="label">Markdown</text>
     <rect x="130" y="125" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="125" width="43" height="12" fill="#083fa1" class="bar-fill" />
-    <text x="392" y="136" class="value">17.4%</text>
+    <rect x="130" y="125" width="58" height="12" fill="#083fa1" class="bar-fill" />
+    <text x="392" y="136" class="value">23.3%</text>
         
-    <!-- HTML -->
-    <text x="25" y="172" class="label">HTML</text>
+    <!-- JavaScript -->
+    <text x="25" y="172" class="label">JavaScript</text>
     <rect x="130" y="160" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="160" width="35" height="12" fill="#8e2de2" class="bar-fill" />
-    <text x="392" y="171" class="value">14.3%</text>
-        
-    <!-- JSON -->
-    <text x="25" y="207" class="label">JSON</text>
-    <rect x="130" y="195" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="195" width="18" height="12" fill="#8e2de2" class="bar-fill" />
-    <text x="392" y="206" class="value">7.3%</text>
+    <rect x="130" y="160" width="40" height="12" fill="#f7df1e" class="bar-fill" />
+    <text x="392" y="171" class="value">16.1%</text>
         
     <!-- Bash -->
-    <text x="25" y="242" class="label">Bash</text>
+    <text x="25" y="207" class="label">Bash</text>
+    <rect x="130" y="195" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="195" width="13" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="206" class="value">5.5%</text>
+        
+    <!-- Python -->
+    <text x="25" y="242" class="label">Python</text>
     <rect x="130" y="230" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="230" width="8" height="12" fill="#8e2de2" class="bar-fill" />
-    <text x="392" y="241" class="value">3.5%</text>
+    <rect x="130" y="230" width="9" height="12" fill="#306998" class="bar-fill" />
+    <text x="392" y="241" class="value">3.7%</text>
         
     <!-- Separator -->
     <line x1="25" y1="245" x2="425" y2="245" stroke="#21262d" stroke-width="1" />
-    <text x="25" y="262" class="subtitle">Daily Average: 3 hrs 38 mins</text>
+    <text x="25" y="262" class="subtitle">Daily Average: 2 hrs 27 mins</text>
 </svg>
