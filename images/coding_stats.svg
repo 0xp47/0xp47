@@ -48,7 +48,7 @@
     
     <!-- Summary stats side by side -->
     <text x="280" y="32" class="value">Total Coding Time</text>
-    <text x="280" y="52" class="stat-value">3 hrs 37 mins</text>
+    <text x="280" y="52" class="stat-value">0 secs</text>
     
     <!-- Separator -->
     <line x1="25" y1="68" x2="425" y2="68" stroke="#21262d" stroke-width="1" />
@@ -56,34 +56,10 @@
     <!-- Other -->
     <text x="25" y="102" class="label">Other</text>
     <rect x="130" y="90" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="90" width="102" height="12" fill="#8e2de2" class="bar-fill" />
-    <text x="392" y="101" class="value">41.0%</text>
-        
-    <!-- Markdown -->
-    <text x="25" y="137" class="label">Markdown</text>
-    <rect x="130" y="125" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="125" width="42" height="12" fill="#083fa1" class="bar-fill" />
-    <text x="392" y="136" class="value">16.9%</text>
-        
-    <!-- TypeScript -->
-    <text x="25" y="172" class="label">TypeScript</text>
-    <rect x="130" y="160" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="160" width="22" height="12" fill="#3178c6" class="bar-fill" />
-    <text x="392" y="171" class="value">8.8%</text>
-        
-    <!-- PHP -->
-    <text x="25" y="207" class="label">PHP</text>
-    <rect x="130" y="195" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="195" width="20" height="12" fill="#4f5d95" class="bar-fill" />
-    <text x="392" y="206" class="value">8.1%</text>
-        
-    <!-- SQL -->
-    <text x="25" y="242" class="label">SQL</text>
-    <rect x="130" y="230" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="230" width="16" height="12" fill="#8e2de2" class="bar-fill" />
-    <text x="392" y="241" class="value">6.5%</text>
+    <rect x="130" y="90" width="250" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="101" class="value">100.0%</text>
         
     <!-- Separator -->
     <line x1="25" y1="245" x2="425" y2="245" stroke="#21262d" stroke-width="1" />
-    <text x="25" y="262" class="subtitle">Daily Average: 43 mins</text>
+    <text x="25" y="262" class="subtitle">Daily Average: 0 secs</text>
 </svg>
