@@ -48,7 +48,7 @@
     
     <!-- Summary stats side by side -->
     <text x="280" y="32" class="value">Total Coding Time</text>
-    <text x="280" y="52" class="stat-value">0 secs</text>
+    <text x="280" y="52" class="stat-value">4 mins</text>
     
     <!-- Separator -->
     <line x1="25" y1="68" x2="425" y2="68" stroke="#21262d" stroke-width="1" />
@@ -56,8 +56,14 @@
     <!-- Other -->
     <text x="25" y="102" class="label">Other</text>
     <rect x="130" y="90" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="90" width="250" height="12" fill="#8e2de2" class="bar-fill" />
-    <text x="392" y="101" class="value">100.0%</text>
+    <rect x="130" y="90" width="248" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="101" class="value">99.6%</text>
+        
+    <!-- Bash -->
+    <text x="25" y="137" class="label">Bash</text>
+    <rect x="130" y="125" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="125" width="1" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="136" class="value">0.4%</text>
         
     <!-- Separator -->
     <line x1="25" y1="245" x2="425" y2="245" stroke="#21262d" stroke-width="1" />
