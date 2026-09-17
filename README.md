@@ -134,5 +134,4 @@ Stats & Proficiency
 
 <!-- START_SECTION:activity -->
 - ⭐ Starred [`Lumina-Facebook-Page-Bot`](https://github.com/0xp47/Lumina-Facebook-Page-Bot)
-- ⭐ Starred [`AminBlg/SimpleEnglish`](https://github.com/AminBlg/SimpleEnglish)
 <!-- END_SECTION:activity -->
