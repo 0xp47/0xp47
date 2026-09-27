@@ -48,12 +48,42 @@
     
     <!-- Summary stats side by side -->
     <text x="280" y="32" class="value">Total Coding Time</text>
-    <text x="280" y="52" class="stat-value">0 secs</text>
+    <text x="280" y="52" class="stat-value">12 hrs 46 mins</text>
     
     <!-- Separator -->
     <line x1="25" y1="68" x2="425" y2="68" stroke="#21262d" stroke-width="1" />
     
+    <!-- Markdown -->
+    <text x="25" y="102" class="label">Markdown</text>
+    <rect x="130" y="90" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="90" width="173" height="12" fill="#083fa1" class="bar-fill" />
+    <text x="392" y="101" class="value">69.5%</text>
+        
+    <!-- TypeScript -->
+    <text x="25" y="137" class="label">TypeScript</text>
+    <rect x="130" y="125" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="125" width="36" height="12" fill="#3178c6" class="bar-fill" />
+    <text x="392" y="136" class="value">14.6%</text>
+        
+    <!-- CSS -->
+    <text x="25" y="172" class="label">CSS</text>
+    <rect x="130" y="160" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="160" width="27" height="12" fill="#563d7c" class="bar-fill" />
+    <text x="392" y="171" class="value">10.8%</text>
+        
+    <!-- Bash -->
+    <text x="25" y="207" class="label">Bash</text>
+    <rect x="130" y="195" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="195" width="4" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="206" class="value">1.8%</text>
+        
+    <!-- Other -->
+    <text x="25" y="242" class="label">Other</text>
+    <rect x="130" y="230" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="230" width="4" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="241" class="value">1.7%</text>
+        
     <!-- Separator -->
     <line x1="25" y1="245" x2="425" y2="245" stroke="#21262d" stroke-width="1" />
-    <text x="25" y="262" class="subtitle">Daily Average: 0 secs</text>
+    <text x="25" y="262" class="subtitle">Daily Average: 4 hrs 15 mins</text>
 </svg>
