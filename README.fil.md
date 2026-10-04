@@ -140,5 +140,5 @@ Stats & Proficiency
 
 ## 📈 Recent Activity
 <!-- START_SECTION:activity -->
-- 🌱 Created branch `main` in [`ccs`](https://github.com/0xp47/ccs)
+- ⭐ Starred [`OpenCut-app/OpenCut`](https://github.com/OpenCut-app/OpenCut)
 <!-- END_SECTION:activity -->
