@@ -48,24 +48,42 @@
     
     <!-- Summary stats side by side -->
     <text x="280" y="32" class="value">Total Coding Time</text>
-    <text x="280" y="52" class="stat-value">9 mins</text>
+    <text x="280" y="52" class="stat-value">1 hr 32 mins</text>
     
     <!-- Separator -->
     <line x1="25" y1="68" x2="425" y2="68" stroke="#21262d" stroke-width="1" />
     
-    <!-- YAML -->
-    <text x="25" y="102" class="label">YAML</text>
+    <!-- TypeScript -->
+    <text x="25" y="102" class="label">TypeScript</text>
     <rect x="130" y="90" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="90" width="247" height="12" fill="#8e2de2" class="bar-fill" />
-    <text x="392" y="101" class="value">98.8%</text>
+    <rect x="130" y="90" width="236" height="12" fill="#3178c6" class="bar-fill" />
+    <text x="392" y="101" class="value">94.6%</text>
         
-    <!-- Python -->
-    <text x="25" y="137" class="label">Python</text>
+    <!-- CSS -->
+    <text x="25" y="137" class="label">CSS</text>
     <rect x="130" y="125" width="250" height="12" class="bar-bg" />
-    <rect x="130" y="125" width="2" height="12" fill="#306998" class="bar-fill" />
-    <text x="392" y="136" class="value">1.2%</text>
+    <rect x="130" y="125" width="10" height="12" fill="#563d7c" class="bar-fill" />
+    <text x="392" y="136" class="value">4.1%</text>
+        
+    <!-- PHP -->
+    <text x="25" y="172" class="label">PHP</text>
+    <rect x="130" y="160" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="160" width="1" height="12" fill="#4f5d95" class="bar-fill" />
+    <text x="392" y="171" class="value">0.7%</text>
+        
+    <!-- HTML -->
+    <text x="25" y="207" class="label">HTML</text>
+    <rect x="130" y="195" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="195" width="1" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="206" class="value">0.5%</text>
+        
+    <!-- SQL -->
+    <text x="25" y="242" class="label">SQL</text>
+    <rect x="130" y="230" width="250" height="12" class="bar-bg" />
+    <rect x="130" y="230" width="0" height="12" fill="#8e2de2" class="bar-fill" />
+    <text x="392" y="241" class="value">0.1%</text>
         
     <!-- Separator -->
     <line x1="25" y1="245" x2="425" y2="245" stroke="#21262d" stroke-width="1" />
-    <text x="25" y="262" class="subtitle">Daily Average: 4 mins</text>
+    <text x="25" y="262" class="subtitle">Daily Average: 46 mins</text>
 </svg>
