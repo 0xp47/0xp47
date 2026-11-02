@@ -113,5 +113,4 @@ Stats & Proficiency
 
 <!-- START_SECTION:activity -->
 - 🌱 Created branch `main` in [`Accurix-Financial-System`](https://github.com/0xp47/Accurix-Financial-System)
-- 🌱 Created branch `main` in [`qr`](https://github.com/0xp47/qr)
 <!-- END_SECTION:activity -->
