@@ -113,7 +113,4 @@ Stats & Proficiency
 
 <!-- START_SECTION:activity -->
 - ⭐ Starred [`suj4n/Plant-Disease`](https://github.com/suj4n/Plant-Disease)
-- ⭐ Starred [`martin-olivier/airgorah`](https://github.com/martin-olivier/airgorah)
-- ⭐ Starred [`tammo1007/alyn`](https://github.com/tammo1007/alyn)
-- 🌱 Created branch `master` in [`leafsense-releases`](https://github.com/0xp47/leafsense-releases)
 <!-- END_SECTION:activity -->
