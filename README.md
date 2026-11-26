@@ -112,5 +112,6 @@ Stats & Proficiency
 ## 📈 Recent Activity
 
 <!-- START_SECTION:activity -->
-- ⭐ Starred [`suj4n/Plant-Disease`](https://github.com/suj4n/Plant-Disease)
+- ⭐ Starred [`Shubhamsaboo/awesome-llm-apps`](https://github.com/Shubhamsaboo/awesome-llm-apps)
+- ⭐ Starred [`pierridotite/mobile-agent-testers`](https://github.com/pierridotite/mobile-agent-testers)
 <!-- END_SECTION:activity -->
